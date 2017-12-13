@@ -8,7 +8,7 @@ public class Main {
         boolean[] primeNumbers = new boolean[ tabRange ];
         primeNumbers[ 0 ] = false;
         primeNumbers[ 1 ] = false;
-        // set all values to true
+        // create array primeNumbers and set all values to true
         for (int i = 2; i < tabRange; i++) {
             primeNumbers[ i ] = true;
         }
@@ -17,7 +17,7 @@ public class Main {
         for (int i = 2; i * i < tabRange; i++) {
             if (primeNumbers[ i ] == true) ;
             {
-                for (int j = (i * i); i * j <= tabRange; j = j + i) {
+                for (int j = (i * i);  j < tabRange; j = j + i) {
                     primeNumbers[ j ] = false;
                 }
             }
