@@ -15,16 +15,16 @@ public class Main {
         //  chcek values with Sieve of Eratosthenes
 
         for (int i = 2; i * i < tabRange; i++) {
-            if (primeNumbers[ i ] == true) ;
-            {
+           // if (primeNumbers[ i ]) ;
+            // {
                 for (int j = (i * i);  j < tabRange; j = j + i) {
                     primeNumbers[ j ] = false;
                 }
-            }
+            //}
         }
         // using loop print all prime numbers
         for (int i = 0; i < tabRange; i++) {
-            if (primeNumbers[ i ] == true) {
+            if (primeNumbers[ i ]) {
                 System.out.println("Number " + i + " is prime number");
             }
         }
