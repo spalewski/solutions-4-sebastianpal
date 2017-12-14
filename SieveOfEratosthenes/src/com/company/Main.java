@@ -13,14 +13,11 @@ public class Main {
             primeNumbers[ i ] = true;
         }
         //  chcek values with Sieve of Eratosthenes
-
         for (int i = 2; i * i < tabRange; i++) {
-           // if (primeNumbers[ i ]) ;
-            // {
-                for (int j = (i * i);  j < tabRange; j = j + i) {
-                    primeNumbers[ j ] = false;
-                }
-            //}
+
+            for (int j = (i * i); j < tabRange; j = j + i) {
+                primeNumbers[ j ] = false;
+            }
         }
         // using loop print all prime numbers
         for (int i = 0; i < tabRange; i++) {
