@@ -2,9 +2,10 @@ package com.company;
 
 public class PrimeNumbers {
 
-    public static void primeNumbers(int tabRange) {
-
-
+    public static int [] primeNumbers() {
+        int primes = 2;
+        int tabRange = 20;
+        int [] returnNumbers = new int [tabRange];
         boolean[] primeNumbers = new boolean[ tabRange ];
         primeNumbers[ 0 ] = false;
         primeNumbers[ 1 ] = false;
@@ -18,9 +19,10 @@ public class PrimeNumbers {
         }
         for (int i = 0; i < tabRange; i++) {
             if (primeNumbers[ i ]) {
-                System.out.println("Number " + i + " is prime number");
+               returnNumbers[i] = i;
+
             }
         }
+    return returnNumbers;
     }
-
 }
