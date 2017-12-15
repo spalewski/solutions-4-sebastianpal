@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-      FiboIte.fiboIte();
+        System.out.println(FiboIte.fiboIte(2));
 
 
     }
