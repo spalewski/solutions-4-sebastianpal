@@ -5,7 +5,7 @@ public class FiboIte {
     public static int fiboIte(int selectNumber) {
         // wersja iteracyjna
 
-        int numbersInString = 20;
+        int numbersInString = selectNumber+1;
         int scoreA = 0;
         int scoreB = 1;
         int scoreF = 0;
@@ -13,7 +13,7 @@ public class FiboIte {
         int[] fibonacci = new int[ numbersInString ];
         fibonacci[ 0 ] = scoreA;
         fibonacci[ 1 ] = scoreB;
-        for (int i = 2; i < fibonacci.length; i++) {
+        for (int i = 2; i <= selectNumber; i++) {
             scoreF = scoreA + scoreB;
             scoreA = scoreB;
             scoreB = scoreF;
