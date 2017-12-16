@@ -1,6 +1,6 @@
 package com.company;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class FiboIteTest {
 
@@ -15,6 +15,7 @@ public class FiboIteTest {
         long number1 = 1;
         long number2 = 1;
         long number3 = 2;
+
 
 
         assertEquals(number1, testedNumber1);
