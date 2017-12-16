@@ -3,21 +3,15 @@ package com.company;
 public class BubbleSort {
 
     public static int[] bubbleSorting(int[] numbersSorted) {
-        for (int i = 0; i < numbersSorted.length; i++) {
-            for (int j = i; j > 0; j--) {
-                if (numbersSorted[ j - 1 ] > numbersSorted[ j ]) {
-                    int moveNumber = numbersSorted[ j ];
-                    numbersSorted[ j ] = numbersSorted[ j - 1 ];
-                    numbersSorted[ j - 1 ] = moveNumber;
+        for (int i = 0; i < numbersSorted.length - 1; i++) {
 
-                }
+            if (numbersSorted[ i + 1 ] < numbersSorted[ i ]) {
+                int moveNumber = numbersSorted[ i ];
+                numbersSorted[ i ] = numbersSorted[ i + 1 ];
+                numbersSorted[ i + 1 ] = moveNumber;
 
             }
-
         }
-
         return numbersSorted;
-
     }
-
 }
