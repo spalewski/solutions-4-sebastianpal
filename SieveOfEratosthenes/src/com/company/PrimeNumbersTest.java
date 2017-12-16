@@ -10,5 +10,6 @@ public class PrimeNumbersTest {
         int [] test = {0, 0, 2, 3, 0, 5, 0, 7, 0, 0, 0, 11, 0, 13, 0, 0, 0, 17, 0, 19};
         int [] result = PrimeNumbers.primeNumbers();
         assertArrayEquals(test,result);
+
     }
 }
