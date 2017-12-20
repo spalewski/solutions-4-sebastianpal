@@ -2,8 +2,8 @@ package pl.coderstrust.SieveOfEratosthenes;
 
 public class PrimeNumbers {
 
-    public static int [] primeNumbers() {
-        int primes = 2;
+    public static int [] primeNumbers(int primes) {
+
         int tabRange = 20;
         int [] returnNumbers = new int [tabRange];
         boolean[] primeNumbers = new boolean[ tabRange ];
@@ -27,3 +27,4 @@ public class PrimeNumbers {
     }
 
 }
+

@@ -13,3 +13,4 @@ public class SelectionSortTest {
         Assert.assertArrayEquals(testNumbers, numbersFromMethod);
     }
 }
+

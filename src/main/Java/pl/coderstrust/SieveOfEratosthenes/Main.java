@@ -1,6 +1,8 @@
 package pl.coderstrust.SieveOfEratosthenes;
 
 
+import java.util.Arrays;
+
 public class Main {
 
 
@@ -8,11 +10,12 @@ public class Main {
 
 
 
-        PrimeNumbers.primeNumbers(100);
+       PrimeNumbers.primeNumbers(20);
 
 
-        System.out.println(Arrays.toString(PrimeNumbers.primeNumbers()));
+        System.out.println(Arrays.toString(PrimeNumbers.primeNumbers(20)));
 
     }
 }
+
 
