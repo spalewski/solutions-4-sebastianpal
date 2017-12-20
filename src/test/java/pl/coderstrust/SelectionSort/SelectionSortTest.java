@@ -1,6 +1,7 @@
 package pl.coderstrust.SelectionSort;
 
-import org.junit.Assert;
+        import org.junit.Assert;
+        import pl.coderstrust.sorting.SelectionSort.SelectionSort;
 
 public class SelectionSortTest {
 

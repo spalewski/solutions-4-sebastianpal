@@ -2,10 +2,10 @@ package pl.coderstrust.SieveOfEratosthenes;
 
 public class PrimeNumbers {
 
-    public static int [] primeNumbers(int primes) {
+    public static int[] primeNumbers(int primes) {
 
         int tabRange = 20;
-        int [] returnNumbers = new int [tabRange];
+        int[] returnNumbers = new int[ tabRange ];
         boolean[] primeNumbers = new boolean[ tabRange ];
         primeNumbers[ 0 ] = false;
         primeNumbers[ 1 ] = false;
@@ -19,12 +19,11 @@ public class PrimeNumbers {
         }
         for (int i = 0; i < tabRange; i++) {
             if (primeNumbers[ i ]) {
-               returnNumbers[i] = i;
+                returnNumbers[ i ] = i;
 
             }
         }
-    return returnNumbers;
+        return returnNumbers;
     }
 
 }
-

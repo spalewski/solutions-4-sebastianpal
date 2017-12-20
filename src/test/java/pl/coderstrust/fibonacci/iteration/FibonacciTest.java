@@ -17,11 +17,9 @@ public class FibonacciTest {
         long number3 = 2;
 
 
-
         assertEquals(number1, testedNumber1);
         assertEquals(number2, testedNumber2);
         assertEquals(number3, testedNumber3);
-
 
 
     }

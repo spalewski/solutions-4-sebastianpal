@@ -5,7 +5,7 @@ public class Fibonacci {
     public static int fiboIte(int selectNumber) {
         // wersja iteracyjna
 
-        int numbersInString = selectNumber+1;
+        int numbersInString = selectNumber + 1;
         int scoreA = 0;
         int scoreB = 1;
         int scoreF = 0;
@@ -22,5 +22,3 @@ public class Fibonacci {
         return fibonacci[ selectNumber ];
     }
 }
-
-
