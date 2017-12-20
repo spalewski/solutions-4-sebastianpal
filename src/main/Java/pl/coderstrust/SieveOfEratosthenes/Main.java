@@ -1,7 +1,7 @@
 package pl.coderstrust.SieveOfEratosthenes;
 
 
-        import java.util.Arrays;
+import java.util.Arrays;
 
 public class Main {
 

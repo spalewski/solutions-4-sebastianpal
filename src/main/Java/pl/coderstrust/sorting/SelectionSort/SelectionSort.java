@@ -13,13 +13,7 @@ public class SelectionSort {
                 numbersSorted[ highestPosition ] = numbersSorted[ i ];
                 numbersSorted[ i ] = temp;
             }
-
         }
         return numbersSorted;
     }
-
-
 }
-
-
-

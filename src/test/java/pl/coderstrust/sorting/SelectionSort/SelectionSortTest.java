@@ -4,7 +4,6 @@ import org.junit.Assert;
 
 public class SelectionSortTest {
 
-
     @org.junit.Test
     public void checkIfProperlySorted() {
         int[] nums = {2135, 4000, 3, 89, 67, 0, 55, 199, 10};
