@@ -10,17 +10,16 @@ public class NumberProcessor {
     String filePath = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "1000.txt";
 
     public void numberProcessor() throws IOException {
-
+    int sum=0;
+    int score = 0;
         FileProcessor fileProcessor = new FileProcessor();
         Scanner scanner = new Scanner(fileProcessor.fileReader(filePath).toString());
         while (scanner.hasNext()) {
             if (scanner.hasNextInt()) {
                 System.out.println("Found :" + scanner.nextInt());
             }
-
-            System.out.println("Not Found :" + scanner.next());
+            scanner.next();
         }
-
         scanner.close();
     }
 }
