@@ -23,31 +23,32 @@ public class NumberProcessor {
         Scanner scanner = new Scanner(listFromFile.toString());
         List<String> linesFiltered = new ArrayList<String>();
         Scanner sc = new Scanner(linesFiltered.toString());
-            while (scanner.hasNext()) {
-                if (scanner.hasNextInt()) {
-                    linesFiltered.add(scanner.nextLine());
-                }
-               else scanner.next();
-            }
-
-            List<String> linesProcessed = new ArrayList<String>();
-            int l = linesFiltered.size();
-            for (int i = 0; i < l; i++) {
-                StringTokenizer stringTokenizer = new StringTokenizer(linesFiltered.get(i));
-                StringBuilder line = new StringBuilder();
-                while (stringTokenizer.hasMoreTokens()) {
-                    int c = Integer.valueOf(stringTokenizer.nextToken());
-                    sum += c;
-                    line.append(c);
-                    line.append("+");
-                }
-                line.deleteCharAt(line.length() - 1);
-                line.append("=");
-                line.append(sum);
-                linesProcessed.add(line.toString());
-            }
-        return linesProcessed;
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                linesFiltered.add(scanner.nextLine());
+            } else scanner.next();
         }
+
+        List<String> linesProcessed = new ArrayList<String>();
+        int l = linesFiltered.size();
+        for (int i = 0; i < l; i++) {
+            StringTokenizer stringTokenizer = new StringTokenizer(linesFiltered.get(i));
+            StringBuilder line = new StringBuilder();
+            while (stringTokenizer.hasMoreTokens()) {
+                int c = Integer.valueOf(stringTokenizer.nextToken());
+                sum += c;
+                line.append(c);
+                line.append("+");
+            }
+            line.deleteCharAt(line.length() - 1);
+            line.append("=");
+            line.append(sum);
+            linesProcessed.add(line.toString());
+            System.out.println(linesProcessed);
+
+        }
+        return linesProcessed;
+    }
 
     }
 
