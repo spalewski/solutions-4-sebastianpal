@@ -1,35 +1,27 @@
 package pl.coderstrust.numbersFromFile;
 
-// responsible for transforming list of numbers to sum of numbers and its result
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class NumberProcessor {
-    String filePath = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "1000.txt";
 
-    public List<String> numberProcessor() throws IOException {
+    public List<String> numberProcessor(String sourceFilePath) throws IOException {
 
         int sum = 0;
         int score = 0;
-
-        int[] ints;
         FileProcessor fileProcessor = new FileProcessor();
-        List<String> listFromFile = fileProcessor.fileReader(filePath);
-        Scanner scanner = new Scanner(listFromFile.toString());
+        List<String> listFromFile = fileProcessor.fileReader(sourceFilePath);
         List<String> linesFiltered = new ArrayList<String>();
-        Scanner sc = new Scanner(linesFiltered.toString());
-        while (scanner.hasNext()) {
-            if (scanner.hasNextInt()) {
-                linesFiltered.add(scanner.nextLine());
-            } else scanner.next();
+        for (String line : listFromFile) {
+            if (!line.isEmpty() && line.matches("[0-9\\s]*")) {
+                linesFiltered.add(line);
+            }
         }
-
-        List<String> linesProcessed = new ArrayList<String>();
+        List<String> linesProcessed = new ArrayList<>();
         int l = linesFiltered.size();
         for (int i = 0; i < l; i++) {
             StringTokenizer stringTokenizer = new StringTokenizer(linesFiltered.get(i));
@@ -44,27 +36,7 @@ public class NumberProcessor {
             line.append("=");
             line.append(sum);
             linesProcessed.add(line.toString());
-            System.out.println(linesProcessed);
-
         }
         return linesProcessed;
     }
-
-    }
-
-
-
-      /*  String regex = "[0-9]*";
-        int in = "";
-        List<Integer> numbersTokenized = new ArrayList<Integer>();
-        StringTokenizer lineTokenizer =
-        new StringTokenizer(fileProcessor.fileReader(filePath).toString(), ",");
-        while (lineTokenizer.hasMoreTokens()) {
-            while (lineTokenizer != null) {
-                if (lineTokenizer.nextToken().matches(regex)) {
-                    int = lineTokenizer.nextToken();
-                    numbersTokenized.add(int);
-                    System.out.println(numbersTokenized);
-                }
-
-            }*/
+}
