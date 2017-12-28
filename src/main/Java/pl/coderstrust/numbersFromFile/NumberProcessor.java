@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 public class NumberProcessor {
 
-    public List<String> numberProcessor(String sourceFilePath) throws IOException {
+    public List<String> numberProcessor(String  sourceFilePath) throws IOException {
 
         int sum = 0;
         int score = 0;
@@ -35,6 +35,7 @@ public class NumberProcessor {
             line.deleteCharAt(line.length() - 1);
             line.append("=");
             line.append(sum);
+            sum = 0;
             linesProcessed.add(line.toString());
         }
         return linesProcessed;

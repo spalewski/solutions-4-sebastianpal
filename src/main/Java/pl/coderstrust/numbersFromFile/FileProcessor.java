@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileProcessor {
-    //String filePath = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "1000.txt";
 
     public List<String> fileReader(String sourceFilePath) throws IOException {
         String line = null;
@@ -17,6 +16,7 @@ public class FileProcessor {
             bufferedReader.close();
             return records;
         }
+
     }
 
     public void fileWriter(String sourceFilePath, String destinationFilePath) throws IOException {
