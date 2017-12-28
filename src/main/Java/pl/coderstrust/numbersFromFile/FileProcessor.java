@@ -19,9 +19,9 @@ public class FileProcessor {
 
     }
 
-    public void fileWriter(String sourceFilePath, String destinationFilePath) throws IOException {
+    public void fileWriter(List <String> linesProcessed, String destinationFilePath) throws IOException {
         NumberProcessor numberProcessor = new NumberProcessor();
-        List<String> linesProccesed = numberProcessor.numberProcessor(sourceFilePath);
+        List<String> linesProccesed = linesProcessed;
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(destinationFilePath));
         for (String line : linesProccesed) {
             bufferedWriter.write(line.toString());

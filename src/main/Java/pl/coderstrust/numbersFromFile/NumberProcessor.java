@@ -9,12 +9,12 @@ import java.util.StringTokenizer;
 
 public class NumberProcessor {
 
-    public List<String> numberProcessor(String  sourceFilePath) throws IOException {
+    public List<String> numberProcessor(List <String> records) throws IOException {
 
         int sum = 0;
         int score = 0;
         FileProcessor fileProcessor = new FileProcessor();
-        List<String> listFromFile = fileProcessor.fileReader(sourceFilePath);
+        List<String> listFromFile = records;
         List<String> linesFiltered = new ArrayList<String>();
         for (String line : listFromFile) {
             if (!line.isEmpty() && line.matches("[0-9\\s]*")) {
