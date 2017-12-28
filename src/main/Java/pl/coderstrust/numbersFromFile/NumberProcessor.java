@@ -13,7 +13,6 @@ public class NumberProcessor {
 
         int sum = 0;
         int score = 0;
-        FileProcessor fileProcessor = new FileProcessor();
         List<String> listFromFile = records;
         List<String> linesFiltered = new ArrayList<String>();
         for (String line : listFromFile) {
