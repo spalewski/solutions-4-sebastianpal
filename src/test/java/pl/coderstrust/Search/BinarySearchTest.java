@@ -34,8 +34,9 @@ public class BinarySearchTest {
         for (int i = 0; scanner.hasNextInt(); i++) {
             test[ i++ ] = scanner.nextInt();
             BinarySearch.search(test, 454);
-            long endTime = System.currentTimeMillis();
-            System.out.println("BinarySearch took " + (endTime - startTime) + " milliseconds");
         }
+        long endTime = System.currentTimeMillis();
+        long time = endTime - startTime;
+        System.out.println("BinarySearch took " + time + " milliseconds");
     }
 }
