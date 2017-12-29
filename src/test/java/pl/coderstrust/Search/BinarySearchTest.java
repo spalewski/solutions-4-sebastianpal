@@ -26,13 +26,16 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void efficiencyTest () throws FileNotFoundException {
+    public void efficiencyTest() throws FileNotFoundException {
 
         Scanner scanner = new Scanner(new FileReader("src" + File.separator + "test" + File.separator + "resources" + File.separator + "100000.txt"));
-        int [] test = new int[1000000];
+        int[] test = new int[ 1000000 ];
+        long startTime = System.currentTimeMillis();
         for (int i = 0; scanner.hasNextInt(); i++) {
-            test[i++] = scanner.nextInt();
-            BinarySearch.search(test,454);
+            test[ i++ ] = scanner.nextInt();
+            BinarySearch.search(test, 454);
+            long endTime = System.currentTimeMillis();
+            System.out.println("BinarySearch took " + (endTime - startTime) + " milliseconds");
         }
     }
 }

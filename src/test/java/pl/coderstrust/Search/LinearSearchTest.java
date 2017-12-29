@@ -29,10 +29,12 @@ public class LinearSearchTest {
     public void efficiencyTest() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileReader("src" + File.separator + "test" + File.separator + "resources" + File.separator + "100000.txt"));
         int[] test = new int[ 1000000 ];
+        long startTime = System.currentTimeMillis();
         for (int i = 0; scanner.hasNextInt(); i++) {
             test[ i++ ] = scanner.nextInt();
             LinearSearch.search(test, 454);
+            long endTime = System.currentTimeMillis();
+            System.out.println("LinearSearch took " + (endTime - startTime) + " milliseconds");
         }
     }
 }
-
