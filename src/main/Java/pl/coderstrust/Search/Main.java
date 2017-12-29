@@ -1,4 +1,4 @@
-package pl.coderstrust.BinarySearch;
+package pl.coderstrust.Search;
 
 public class Main {
     public static void main(String[] args) {

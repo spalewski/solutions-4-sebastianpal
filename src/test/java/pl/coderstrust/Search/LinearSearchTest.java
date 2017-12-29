@@ -1,7 +1,8 @@
-package pl.coderstrust.BinarySearch;
+package pl.coderstrust.Search;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pl.coderstrust.Search.LinearSearch;
 
 public class LinearSearchTest {
 
