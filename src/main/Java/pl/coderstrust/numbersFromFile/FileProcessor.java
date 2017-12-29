@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FileProcessor {
 
-    public List<String> fileReader(String sourceFilePath) throws IOException {
+    public List<String> readFromFile(String sourceFilePath) throws IOException {
         String line = null;
         List<String> records = new ArrayList<String>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(sourceFilePath))) {
@@ -18,9 +18,7 @@ public class FileProcessor {
         }
 
     }
-
-    public void fileWriter(List <String> linesProcessed, String destinationFilePath) throws IOException {
-        NumberProcessor numberProcessor = new NumberProcessor();
+    public void writeToFile(List <String> linesProcessed, String destinationFilePath) throws IOException {
         List<String> linesProccesed = linesProcessed;
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(destinationFilePath));
         for (String line : linesProccesed) {

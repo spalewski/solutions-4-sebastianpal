@@ -16,14 +16,14 @@ public class FileProcessorTest {
     public void checkNumberOfLines() throws IOException {
 
         int linesManualCheck = 105;
-        int linesFromMethod = fileProcessor.fileReader(filePath).size();
+        int linesFromMethod = fileProcessor.readFromFile(filePath).size();
         Assert.assertEquals(linesManualCheck, linesFromMethod);
     }
 
     @Test
     public void readLinesFromFile() throws IOException {
 
-        List<String> testList = fileProcessor.fileReader(testFilePath);
+        List<String> testList = fileProcessor.readFromFile(testFilePath);
 
         String numS0 = "1";
         String numS1 = "3";
