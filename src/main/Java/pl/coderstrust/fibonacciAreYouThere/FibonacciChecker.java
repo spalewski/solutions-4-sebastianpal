@@ -18,7 +18,7 @@ public class FibonacciChecker {
         fibonacci.add((long) 1);
         fibonacci.add((long) 2);
 
-        for (long i = 2; scoreF<= numbersInString; i++) {
+        for (long i = 2; scoreF<=numbersInString; i++) {
             scoreF = scoreA + scoreB;
             scoreA = scoreB;
             scoreB = scoreF;
