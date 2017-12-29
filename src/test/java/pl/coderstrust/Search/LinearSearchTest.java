@@ -2,7 +2,11 @@ package pl.coderstrust.Search;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pl.coderstrust.Search.LinearSearch;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 
 public class LinearSearchTest {
 
@@ -20,4 +24,16 @@ public class LinearSearchTest {
         int elementIsNot = 25;
         Assert.assertEquals(-1, LinearSearch.search(arr, elementIsNot));
     }
+
+    @Test
+    public void efficiencyTest() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new FileReader("src" + File.separator + "test" + File.separator + "resources" + File.separator + "100000.txt"));
+        int[] test;
+        test = new int[ 1000000 ];
+        for (int i = 0; scanner.hasNextInt(); i++) {
+            test[ i++ ] = scanner.nextInt();
+            LinearSearch.search(test, 454);
+        }
+    }
 }
+
