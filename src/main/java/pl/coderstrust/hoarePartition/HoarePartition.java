@@ -3,7 +3,6 @@ package pl.coderstrust.hoarePartition;
 public class HoarePartition {
 
     public static int[] horaeSorter(int[] array, int pivotPosition) {
-        int pivot = array[ pivotPosition ];
 
         int pivotValue = array[ pivotPosition ];
         int i = 0;
