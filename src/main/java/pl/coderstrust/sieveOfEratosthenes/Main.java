@@ -1,4 +1,4 @@
-package pl.coderstrust.SieveOfEratosthenes;
+package pl.coderstrust.sieveOfEratosthenes;
 
 import java.util.Arrays;
 

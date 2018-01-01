@@ -1,4 +1,4 @@
-package pl.coderstrust.Search;
+package pl.coderstrust.search;
 
 public class BinarySearch {
 
