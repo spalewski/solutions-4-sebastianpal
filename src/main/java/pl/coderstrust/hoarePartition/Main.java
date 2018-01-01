@@ -7,7 +7,7 @@ public class Main {
         HoarePartition hoarePartition = new HoarePartition();
 
         for (int i = 0; i < arrayTest.length; i++) {
-            System.out.println(HoarePartition.horaeSorter(arrayTest, 4)[ i ]);
+            System.out.println(HoarePartition.horaeSorter(arrayTest, 3)[ i ]);
         }
     }
 }
