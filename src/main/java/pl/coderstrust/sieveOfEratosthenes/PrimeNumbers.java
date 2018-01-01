@@ -1,4 +1,4 @@
-package pl.coderstrust.SieveOfEratosthenes;
+package pl.coderstrust.sieveOfEratosthenes;
 
 public class PrimeNumbers {
 

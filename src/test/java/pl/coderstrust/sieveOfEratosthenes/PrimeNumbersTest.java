@@ -1,4 +1,4 @@
-package pl.coderstrust.SieveOfEratosthenes;
+package pl.coderstrust.sieveOfEratosthenes;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
