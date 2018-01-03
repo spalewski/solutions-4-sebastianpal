@@ -1,6 +1,6 @@
 package pl.coderstrust.letsSort;
 
-public class BubbleSort implements SortingMethod{
+public class BubbleSort implements SortingMethod {
     @Override
     public int[] sort(int[] array) {
         for (int i = 0; i <= array.length; ++i) {
@@ -13,8 +13,5 @@ public class BubbleSort implements SortingMethod{
             }
         }
         return array;
-    }
-    public void a (){
-        System.out.println("blabla");
     }
 }
