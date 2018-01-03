@@ -11,7 +11,7 @@ public class CollectionsSort implements SortingMethod {
     }
 
     @Override
-    public void getName() {
-        getClass().getName();
+    public String getName() {
+        return "CollectionsSort";
     }
 }

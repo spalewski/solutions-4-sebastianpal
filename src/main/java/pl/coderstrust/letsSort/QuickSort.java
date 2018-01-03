@@ -19,8 +19,8 @@ public class QuickSort implements SortingMethod {
     }
 
     @Override
-    public void getName() {
-        getClass().getName();
+    public String getName() {
+        return "QuickSort";
     }
 
     private void quickSort(int lowerIndex, int higherIndex) {

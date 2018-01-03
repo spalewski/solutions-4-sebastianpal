@@ -19,7 +19,7 @@ public class SelectionSort implements SortingMethod {
     }
 
     @Override
-    public void getName() {
-        getClass().getName();
+    public String getName() {
+        return "SelectionSort";
     }
 }

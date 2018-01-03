@@ -16,8 +16,8 @@ public class MergeSort implements SortingMethod {
     }
 
     @Override
-    public void getName() {
-        getClass().getName();
+    public String getName() {
+        return "MergeSort";
     }
 
     private void doMergeSort(int lowerIndex, int higherIndex) {
