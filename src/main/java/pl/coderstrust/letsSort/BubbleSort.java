@@ -14,4 +14,9 @@ public class BubbleSort implements SortingMethod {
         }
         return array;
     }
+
+    @Override
+    public void getName() {
+        System.out.println(getClass().getName());
+    }
 }

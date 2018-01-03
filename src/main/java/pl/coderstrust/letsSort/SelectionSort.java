@@ -17,4 +17,9 @@ public class SelectionSort implements SortingMethod {
         }
         return array;
     }
+
+    @Override
+    public void getName() {
+        getClass().getName();
+    }
 }

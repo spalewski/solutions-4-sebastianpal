@@ -10,12 +10,17 @@ public class QuickSort implements SortingMethod {
     public int[] sort(int[] array) {
 
         if (array == null || array.length == 0) {
-
+            return array;
         }
         this.array = array;
         length = array.length;
         quickSort(0, length - 1);
         return array;
+    }
+
+    @Override
+    public void getName() {
+        getClass().getName();
     }
 
     private void quickSort(int lowerIndex, int higherIndex) {

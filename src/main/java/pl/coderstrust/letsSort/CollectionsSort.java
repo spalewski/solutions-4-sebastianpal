@@ -9,4 +9,9 @@ public class CollectionsSort implements SortingMethod {
         Arrays.sort(array);
         return array;
     }
+
+    @Override
+    public void getName() {
+        getClass().getName();
+    }
 }

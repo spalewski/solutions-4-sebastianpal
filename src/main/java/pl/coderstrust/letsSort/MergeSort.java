@@ -15,6 +15,11 @@ public class MergeSort implements SortingMethod {
         return array;
     }
 
+    @Override
+    public void getName() {
+        getClass().getName();
+    }
+
     private void doMergeSort(int lowerIndex, int higherIndex) {
 
         if (lowerIndex < higherIndex) {
