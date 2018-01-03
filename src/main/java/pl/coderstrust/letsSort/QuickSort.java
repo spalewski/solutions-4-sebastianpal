@@ -1,44 +1,52 @@
+
 package pl.coderstrust.letsSort;
 
-public class QuickSort {
-    private int[] numbers;
-    private int number;
+public class QuickSort implements SortingMethod {
 
-    public void sort(int[] values) {
-        if (values == null || values.length == 0) {
-            return;
+    private int array[];
+    private int length;
+
+    @Override
+    public int[] sort(int[] array) {
+
+        if (array == null || array.length == 0) {
+
         }
-        this.numbers = values;
-        number = values.length;
-        quicksort(0, number - 1);
+        this.array = array;
+        length = array.length;
+        quickSort(0, length - 1);
+        return array;
     }
 
-    private void quicksort(int low, int high) {
-        int i = low, j = high;
-        int pivot = numbers[ low + (high - low) / 2 ];
+    private void quickSort(int lowerIndex, int higherIndex) {
+
+        int i = lowerIndex;
+        int j = higherIndex;
+
+        int pivot = array[ lowerIndex + (higherIndex - lowerIndex) / 2 ];
 
         while (i <= j) {
-            while (numbers[ i ] < pivot) {
+            while (array[ i ] < pivot) {
                 i++;
             }
-            while (numbers[ j ] > pivot) {
+            while (array[ j ] > pivot) {
                 j--;
             }
             if (i <= j) {
-                exchange(i, j);
+                exchangeNumbers(i, j);
                 i++;
                 j--;
             }
         }
-        if (low < j)
-            quicksort(low, j);
-        if (i < high)
-            quicksort(i, high);
+        if (lowerIndex < j)
+            quickSort(lowerIndex, j);
+        if (i < higherIndex)
+            quickSort(i, higherIndex);
     }
 
-    private void exchange(int i, int j) {
-        int temp = numbers[ i ];
-        numbers[ i ] = numbers[ j ];
-        numbers[ j ] = temp;
+    private void exchangeNumbers(int i, int j) {
+        int temp = array[ i ];
+        array[ i ] = array[ j ];
+        array[ j ] = temp;
     }
 }

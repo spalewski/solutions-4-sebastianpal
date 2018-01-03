@@ -1,4 +1,12 @@
 package pl.coderstrust.letsSort;
 
-public class CollectionsSort {
+import java.util.Arrays;
+
+public class CollectionsSort implements SortingMethod {
+
+    @Override
+    public int[] sort(int[] array) {
+        Arrays.sort(array);
+        return array;
+    }
 }

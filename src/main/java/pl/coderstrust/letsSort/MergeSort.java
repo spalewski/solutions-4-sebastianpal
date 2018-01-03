@@ -1,47 +1,53 @@
 package pl.coderstrust.letsSort;
 
-public class MergeSort {
+public class MergeSort implements SortingMethod {
 
-    private static final int N = 30;
-    private static int tab[] = {30, 29, 28, 27, 26, 25, 1, 2, 3, 4, 5, 6, 7, 24, 23, 22, 21, 20, 19, 18, 8, 9, 10, 11, 17, 16, 15, 13, 14, 12};
-    private static int t[] = new int[ N ];
+    private int[] array;
+    private int[] tempMergArr;
+    private int length;
 
-    private static void merge(int start, int middle, int end) {
-        int i, j, q;
-        for (i = start; i <= end; i++) t[ i ] = tab[ i ];
-        i = start;
-        j = middle + 1;
-        q = start;
-        while (i <= middle && j <= end) {
-            if (t[ i ] < t[ j ])
-                tab[ q++ ] = t[ i++ ];
-            else
-                tab[ q++ ] = t[ j++ ];
-        }
-        while (i <= middle) tab[ q++ ] = t[ i++ ];
+    @Override
+    public int[] sort(int[] array) {
+        this.array = array;
+        this.length = array.length;
+        this.tempMergArr = new int[ length ];
+        doMergeSort(0, length - 1);
+        return array;
     }
 
-    public static void mergesort(int start, int end) {
-        int sr;
-        if (start < end) {
-            sr = (start + end) / 2;
-            mergesort(start, sr);
-            mergesort(sr + 1, end);
-            merge(start, sr, end);
+    private void doMergeSort(int lowerIndex, int higherIndex) {
+
+        if (lowerIndex < higherIndex) {
+            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+            doMergeSort(lowerIndex, middle);
+            doMergeSort(middle + 1, higherIndex);
+            mergeParts(lowerIndex, middle, higherIndex);
         }
     }
 
-    public static void main(String[] args) {
-        int i;
+    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
 
-        System.out.println("Zbior przed sortowaniem:");
-        for (i = 0; i < N; i++)
-            System.out.print(tab[ i ] + " ");
+        for (int i = lowerIndex; i <= higherIndex; i++) {
+            tempMergArr[ i ] = array[ i ];
+        }
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
+        while (i <= middle && j <= higherIndex) {
+            if (tempMergArr[ i ] <= tempMergArr[ j ]) {
+                array[ k ] = tempMergArr[ i ];
+                i++;
+            } else {
+                array[ k ] = tempMergArr[ j ];
+                j++;
+            }
+            k++;
+        }
+        while (i <= middle) {
+            array[ k ] = tempMergArr[ i ];
+            k++;
+            i++;
+        }
 
-        mergesort(0, N - 1);
-
-        System.out.println("\nZbior po sortowaniu:");
-        for (i = 0; i < N; i++)
-            System.out.print(tab[ i ] + " ");
     }
 }
