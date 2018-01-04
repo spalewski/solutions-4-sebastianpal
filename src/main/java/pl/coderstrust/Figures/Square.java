@@ -3,16 +3,13 @@ package pl.coderstrust.Figures;
 public class Square extends Rectangle implements Figure {
 
     private double surface;
+    double a;
 
     public Square(double a) {
         super(a);
-        this.b = a;
+        b=a;
     }
-
-    @Override
-    public double calculateArea() {
-        return super.calculateArea();
+    public Square(double a, double b) {
+        super(a,1);
     }
 }
-
-

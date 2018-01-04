@@ -3,19 +3,17 @@ package pl.coderstrust.Figures;
 public class Main {
 
     public static void main(String[] args) {
-        Cicrcle circle = new Cicrcle();
-        circle.setR(20);circle.calculateArea();
-        System.out.println(circle.getSurface());
+       Figure circle = new Cicrcle(10);
+       circle.calculateArea();
+       System.out.println(circle.calculateArea());
 
         Figure trangle1 = new Triangle(21,23);
         trangle1.calculateArea();
         System.out.println(trangle1.calculateArea());
 
-        Trapezoid trapezoid = new Trapezoid();
-        trapezoid.setA(4);trapezoid.setB(4);trapezoid.setHeight(45);
-        System.out.println(trapezoid.calculateArea());
-        Square square = new Square();
-        square.setA(20);
+        Figure rectangle = new Rectangle(10 , 20);
+        System.out.println(rectangle.calculateArea());
+        Figure square = new Square(10);
         System.out.println(square.calculateArea());
 
     }

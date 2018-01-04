@@ -6,19 +6,11 @@ public class Cicrcle implements Figure {
     private double r;
     private double surface;
 
-    public double getSurface() {
-        return surface;
-    }
-
-    public Cicrcle() {
+    public Cicrcle(double r) {
         this.pi = pi;
         this.r = r;
     }
-
-    public void setR(double r) {
-        this.r = r;
-    }
-
+    
     @Override
     public double calculateArea() {
         surface=pi*r*r;

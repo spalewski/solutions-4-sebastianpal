@@ -2,20 +2,14 @@ package pl.coderstrust.Figures;
 
 public class Trapezoid implements Figure {
 
-    double a;
-    double b;
-    double height;
+    private double a;
+    private double b;
+    private double height;
     double surface;
 
-    public void setA(double a) {
+    public Trapezoid(double a, double b, double height) {
         this.a = a;
-    }
-
-    public void setB(double b) {
         this.b = b;
-    }
-
-    public void setHeight(double height) {
         this.height = height;
     }
 

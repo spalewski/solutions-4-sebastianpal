@@ -14,13 +14,8 @@ public class Rectangle implements Figure {
         this.b = b;
     }
 
-
-    public void setA(double a) {
+    public Rectangle(double a) {
         this.a = a;
-    }
-
-    public void setB(double b) {
-        this.b = b;
     }
 
     @Override

@@ -2,28 +2,15 @@ package pl.coderstrust.Figures;
 
 public class Triangle implements Figure {
 
+    double surface;
+    private double base ;
+    private double height;
+
     public Triangle(double base, double height) {
         this.surface = surface;
         this.base = base;
         this.height = height;
     }
-
-    public double getBase() {
-        return base;
-    }
-
-    public double getSurface() {
-        return surface;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    double surface;
-    double base ;
-    double height;
-
 
     @Override
     public double calculateArea() {
