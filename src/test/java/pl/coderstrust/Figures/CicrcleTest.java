@@ -1,10 +1,16 @@
 package pl.coderstrust.Figures;
 
-public class CicrcleTest extends CalculableTest {
+import org.junit.Assert;
+import org.junit.Test;
 
-    @Override
-    public Calculable getFigure() {
-        return new Cicrcle();}
+public class CicrcleTest {
 
+    @Test
+    public void calculateArea() {
+        Calculable circle = new Cicrcle(10);
+        double given = circle.calculateArea();
+        double expected = 314.15926535899996;
+
+        Assert.assertEquals(expected, given, 0.001);
     }
-
+}
