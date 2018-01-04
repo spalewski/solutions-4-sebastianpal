@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class FigureTest {
 
-    public abstract FigureTest getFigure();
+    public abstract Figure getFigure();
 
     @Test
     public void shouldCalculateAreaOfAllFigures() {
@@ -16,5 +16,8 @@ public abstract class FigureTest {
         double a = 12;
         double b = 20;
         double r = 40;
-        List <Object> figures = new ArrayList<Object>();
-        double result = getFigure().
+        List<Object> figures = new ArrayList<Object>();
+        double result = getFigure().calculateArea();
+
+    }
+}
