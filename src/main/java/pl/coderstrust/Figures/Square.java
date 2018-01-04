@@ -1,9 +1,8 @@
-package pl.coderstrust.Figures;
+package pl.coderstrust.figures;
 
 public class Square extends Rectangle implements Calculable {
 
-    private double surface;
-    double a;
+    double surface;
 
     public Square(double a) {
         super(a);
@@ -11,9 +10,5 @@ public class Square extends Rectangle implements Calculable {
     }
 
     public Square() {
-    }
-
-    public Square(double a, double b) {
-        super(a,1);
     }
 }

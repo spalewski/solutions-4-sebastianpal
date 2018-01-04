@@ -1,10 +1,10 @@
-package pl.coderstrust.Figures;
+package pl.coderstrust.figures;
 
 public class Trapezoid implements Calculable {
 
-    private double a;
-    private double b;
-    private double height;
+    double a;
+    double b;
+    double height;
     double surface;
 
     public Trapezoid(double a, double b, double height) {

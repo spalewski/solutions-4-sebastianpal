@@ -1,4 +1,4 @@
-package pl.coderstrust.Figures;
+package pl.coderstrust.figures;
 
 import org.junit.Assert;
 import org.junit.Test;

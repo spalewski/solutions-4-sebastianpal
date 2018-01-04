@@ -1,10 +1,10 @@
-package pl.coderstrust.Figures;
+package pl.coderstrust.figures;
 
 public class Triangle implements Calculable {
 
     double surface;
-    private double base ;
-    private double height;
+    double base ;
+    double height;
 
     public Triangle(double base, double height) {
         this.surface = surface;

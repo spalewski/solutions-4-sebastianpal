@@ -1,17 +1,16 @@
-package pl.coderstrust.Figures;
+package pl.coderstrust.figures;
 
 public class Cicrcle implements Calculable {
 
-    private double pi = 3.14159265359;
-    private double r;
-    private double surface;
+    double pi = 3.14159265359;
+    double r;
+    double surface;
 
     public Cicrcle(double r) {
         this.pi = pi;
         this.r = r;
     }
     public Cicrcle() {
-
     }
     
     @Override
