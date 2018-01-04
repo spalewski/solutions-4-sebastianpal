@@ -1,6 +1,6 @@
 package pl.coderstrust.Figures;
 
-public class Trapezoid implements Figure {
+public class Trapezoid implements Calculable {
 
     private double a;
     private double b;
@@ -11,6 +11,9 @@ public class Trapezoid implements Figure {
         this.a = a;
         this.b = b;
         this.height = height;
+    }
+
+    public Trapezoid() {
     }
 
     @Override

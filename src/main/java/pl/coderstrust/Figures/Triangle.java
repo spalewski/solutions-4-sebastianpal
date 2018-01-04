@@ -1,6 +1,6 @@
 package pl.coderstrust.Figures;
 
-public class Triangle implements Figure {
+public class Triangle implements Calculable {
 
     double surface;
     private double base ;
@@ -10,6 +10,9 @@ public class Triangle implements Figure {
         this.surface = surface;
         this.base = base;
         this.height = height;
+    }
+
+    public Triangle() {
     }
 
     @Override

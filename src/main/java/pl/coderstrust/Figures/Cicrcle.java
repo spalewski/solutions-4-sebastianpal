@@ -1,6 +1,6 @@
 package pl.coderstrust.Figures;
 
-public class Cicrcle implements Figure {
+public class Cicrcle implements Calculable {
 
     private double pi = 3.14159265359;
     private double r;
@@ -9,6 +9,9 @@ public class Cicrcle implements Figure {
     public Cicrcle(double r) {
         this.pi = pi;
         this.r = r;
+    }
+    public Cicrcle() {
+
     }
     
     @Override

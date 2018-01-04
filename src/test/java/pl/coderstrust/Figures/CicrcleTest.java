@@ -1,11 +1,10 @@
 package pl.coderstrust.Figures;
 
-import org.junit.Test;
-
-public class CicrcleTest extends FigureTest {
+public class CicrcleTest extends CalculableTest {
 
     @Override
-    public FigureTest getFigure() {
+    public Calculable getFigure() {
         return new Cicrcle();}
 
     }
+

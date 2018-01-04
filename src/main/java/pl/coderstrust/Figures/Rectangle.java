@@ -1,6 +1,6 @@
 package pl.coderstrust.Figures;
 
-public class Rectangle implements Figure {
+public class Rectangle implements Calculable {
 
     double surface;
     double a;
