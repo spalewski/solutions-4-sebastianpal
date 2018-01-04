@@ -6,6 +6,15 @@ public class Rectangle implements Figure {
     double a;
     double b;
 
+    public Rectangle() {
+    }
+
+    public Rectangle(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
+
+
     public void setA(double a) {
         this.a = a;
     }

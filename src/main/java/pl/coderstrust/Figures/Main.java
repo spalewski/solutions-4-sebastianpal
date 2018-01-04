@@ -14,6 +14,9 @@ public class Main {
         Trapezoid trapezoid = new Trapezoid();
         trapezoid.setA(4);trapezoid.setB(4);trapezoid.setHeight(45);
         System.out.println(trapezoid.calculateArea());
+        Square square = new Square();
+        square.setA(20);
+        System.out.println(square.calculateArea());
 
     }
 }
