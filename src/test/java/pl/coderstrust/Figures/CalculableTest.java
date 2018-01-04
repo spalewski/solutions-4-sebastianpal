@@ -16,12 +16,13 @@ public abstract class CalculableTest {
         double b = 20;
         double r = 40;
         double base = 10;
-        Calculable circle = new Cicrcle();
-        Calculable rectangle = new Rectangle();
-        Calculable squre = new Square();
-        Calculable trapezoid = new Trapezoid();
-        Calculable triangle = new Triangle();
-        
+        double height = 100;
+        Calculable circle = new Cicrcle(r);
+        Calculable rectangle = new Rectangle(a,b);
+        Calculable squre = new Square(b);
+        Calculable trapezoid = new Trapezoid(a,b, height);
+        Calculable triangle = new Triangle(base,height);
+
         List<Calculable> figures = new ArrayList<>();
         figures.add(circle);
         figures.add(rectangle);
@@ -29,10 +30,10 @@ public abstract class CalculableTest {
         figures.add(trapezoid);
         figures.add(triangle);
 
-        for (Calculable c:
-             figures); {
-                 a=12; b=12; r=100; base=20;
-            
+        for (int i = 0; i < figures.size(); i++) {
+            {
+                System.out.println((figures.get(i).calculateArea()));
+            }
         }
     }
 }
