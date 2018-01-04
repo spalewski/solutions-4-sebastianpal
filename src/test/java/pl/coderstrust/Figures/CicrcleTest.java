@@ -5,11 +5,7 @@ import org.junit.Test;
 public class CicrcleTest extends FigureTest {
 
     @Override
-    public calculateFigures getFigure() {
-        return Cicrcle;
-    }
+    public FigureTest getFigure() {
+        return new Cicrcle();}
 
-    @Test
-    public void calculateArea() {
     }
-}
