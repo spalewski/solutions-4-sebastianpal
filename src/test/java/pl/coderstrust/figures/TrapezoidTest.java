@@ -6,7 +6,7 @@ import org.junit.Test;
 public class TrapezoidTest {
 
     @Test
-    public void calculateArea() {
+    public void checkCalculateArea() {
         Calculable trapezoid = new Trapezoid(2.4, 3.6, 2);
         double given = trapezoid.calculateArea();
         double expected = 6;

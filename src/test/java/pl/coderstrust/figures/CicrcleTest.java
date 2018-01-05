@@ -6,7 +6,7 @@ import org.junit.Test;
 public class CicrcleTest {
 
     @Test
-    public void calculateArea() {
+    public void checkCalculateArea() {
         Calculable circle = new Cicrcle(10);
         double given = circle.calculateArea();
         double expected = 314.15926535899996;

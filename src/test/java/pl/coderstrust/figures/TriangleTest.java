@@ -5,7 +5,7 @@ package pl.coderstrust.figures;
 
 public class TriangleTest {
     @Test
-    public void calculateArea() {
+    public void checkCalculateArea() {
         Calculable triangle = new Triangle(2.4, 3);
         double given = triangle.calculateArea();
         double expected = 3.6;
