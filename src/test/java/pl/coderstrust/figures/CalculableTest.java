@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class CalculableTest {
-
-    public abstract Calculable getFigure();
+public class CalculableTest {
 
     @Test
     public void shouldCalculateAllFigures() {
