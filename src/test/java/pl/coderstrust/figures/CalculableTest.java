@@ -15,7 +15,7 @@ public class CalculableTest {
         double r = 40;
         double base = 10;
         double height = 100;
-        Calculable circle = new Cicrcle(base);
+        Calculable circle = new Cicrcle(r);
         Calculable rectangle = new Rectangle(a, b);
         Calculable squre = new Square(b);
         Calculable trapezoid = new Trapezoid(a, b, height);

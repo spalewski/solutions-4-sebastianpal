@@ -10,9 +10,7 @@ public class Cicrcle implements Calculable {
         this.pi = pi;
         this.r = r;
     }
-    public Cicrcle() {
-    }
-    
+
     @Override
     public double calculateArea() {
         surface=pi*r*r;

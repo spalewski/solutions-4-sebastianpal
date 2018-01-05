@@ -12,9 +12,6 @@ public class Triangle implements Calculable {
         this.height = height;
     }
 
-    public Triangle() {
-    }
-
     @Override
     public double calculateArea() {
         surface=0.5*base*height;

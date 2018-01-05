@@ -6,9 +6,6 @@ public class Rectangle implements Calculable {
     double a;
     double b;
 
-    public Rectangle() {
-    }
-
     public Rectangle(double a, double b) {
         this.a = a;
         this.b = b;
