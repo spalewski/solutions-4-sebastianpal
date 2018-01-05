@@ -6,7 +6,7 @@ import org.junit.Test;
 public class RectangleTest {
 
     @Test
-    public void checkCalculateArea() {
+    public void shouldCalculateRectangleArea() {
 
         Calculable rectangle = new Rectangle(20,30);
         double given = rectangle.calculateArea();

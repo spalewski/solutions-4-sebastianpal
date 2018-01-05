@@ -6,7 +6,7 @@ import org.junit.Test;
 public class SquareTest {
 
     @Test
-    public void checkCalculateArea() {
+    public void shouldCalculateSquareArea() {
         Calculable squre = new Square(20);
         double given = squre.calculateArea();
         double expected = 400;

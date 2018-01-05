@@ -5,7 +5,6 @@ public class Trapezoid implements Calculable {
     double a;
     double b;
     double height;
-    double surface;
 
     public Trapezoid(double a, double b, double height) {
         this.a = a;
@@ -15,7 +14,6 @@ public class Trapezoid implements Calculable {
 
     @Override
     public double calculateArea() {
-        surface=((a+b)*height)*0.5;
-        return surface;
+        return ((a+b)*height)*0.5;
     }
 }
