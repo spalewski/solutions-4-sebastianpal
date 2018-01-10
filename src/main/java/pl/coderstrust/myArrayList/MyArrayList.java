@@ -1,10 +1,9 @@
 package pl.coderstrust.myArrayList;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class MyArrayList implements List<Long> {
     @Override
@@ -121,5 +120,4 @@ public class MyArrayList implements List<Long> {
     public List<Long> subList(int fromIndex, int toIndex) {
         return null;
     }
-}
 }
