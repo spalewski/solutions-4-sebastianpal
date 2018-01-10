@@ -28,11 +28,6 @@ public class MyArrayList implements List<Long> {
     }
 
     @Override
-    public void forEach(Consumer<? super Long> action) {
-
-    }
-
-    @Override
     public Object[] toArray() {
         return new Object[ 0 ];
     }
@@ -73,23 +68,8 @@ public class MyArrayList implements List<Long> {
     }
 
     @Override
-    public boolean removeIf(Predicate<? super Long> filter) {
-        return false;
-    }
-
-    @Override
     public boolean retainAll(Collection<?> c) {
         return false;
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator<Long> operator) {
-
-    }
-
-    @Override
-    public void sort(Comparator<? super Long> c) {
-
     }
 
     @Override
@@ -141,19 +121,5 @@ public class MyArrayList implements List<Long> {
     public List<Long> subList(int fromIndex, int toIndex) {
         return null;
     }
-
-    @Override
-    public Spliterator<Long> spliterator() {
-        return null;
-    }
-
-    @Override
-    public Stream<Long> stream() {
-        return null;
-    }
-
-    @Override
-    public Stream<Long> parallelStream() {
-        return null;
-    }
+}
 }
