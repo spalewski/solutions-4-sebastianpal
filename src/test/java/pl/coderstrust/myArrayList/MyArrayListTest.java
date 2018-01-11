@@ -3,34 +3,30 @@ package pl.coderstrust.myArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-
-import static org.junit.Assert.*;
-
 public class MyArrayListTest extends MyArrayListTestBase {
 
-    MyArrayList myList = new MyArrayList();
+    MyArrayList myTestList = new MyArrayList();
+    
 
     @Test
     public void shouldCheckArraySize() {
-        myList.size();
-        Assert.assertEquals(0, myList.size());
-        myList.add((long) 2);
-        Assert.assertEquals(1, myList.size());
+        myTestList.size();
+        Assert.assertEquals(0, myTestList.size());
+        myTestList.add(2);
+        Assert.assertEquals(1, myTestList.size());
     }
 
     @Test
     public void ShouldCheckIsArrayEmpty() {
-    Assert.assertEquals(true,myList.isEmpty());
-    myList.add((long) 55);
-    Assert.assertEquals(false,myList.isEmpty());
+    Assert.assertEquals(true, myTestList.isEmpty());
+    myTestList.add(55);
+    Assert.assertEquals(false, myTestList.isEmpty());
     }
 
     @Test
     public void contains() {
-    myList.add((long) 5);
-    Assert.assertEquals(false,myList.contains(0));
-    Assert.assertEquals(true,myList.contains(5));
+    Assert.assertEquals(false, myTestList.contains(1));
+    Assert.assertEquals(true, myTestList.contains(55));
 
 
     }
@@ -101,7 +97,8 @@ public class MyArrayListTest extends MyArrayListTestBase {
     }
 
     @Override
-    public ArrayMethod getArrayMethod() {
-        return null;
+    public MyArrayList getArrayMethod() {
+        return new MyArrayList();
     }
 }
+
