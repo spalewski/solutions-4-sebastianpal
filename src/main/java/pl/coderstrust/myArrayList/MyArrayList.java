@@ -2,15 +2,15 @@ package pl.coderstrust.myArrayList;
 
 import java.util.*;
 
-public class MyArrayList implements List<Long> {
+public class MyArrayList<T> implements List<T> {
 
-    private Long[] data;
+    private T[] data;
     private int actSize = 0;
     private int fixSize = 10;
 
 
     public MyArrayList() {
-        data = new Long[this.fixSize];
+        data = (T[]) new Object[this.fixSize];
     }
 
     @Override
@@ -25,11 +25,11 @@ public class MyArrayList implements List<Long> {
 
     @Override
     public boolean contains(Object o) {
-    return false;
+        return indexOf(o) != -1;
     }
 
     @Override
-    public Iterator<Long> iterator() {
+    public Iterator<T> iterator() {
         return null;
     }
 
@@ -44,18 +44,18 @@ public class MyArrayList implements List<Long> {
     }
 
     @Override
-    public boolean add(Long aLong) {
-        actSize++;
+    public boolean add(T element) {
 
-        if (actSize>=data.length) {
+        if (actSize >= data.length) {
 
-            Long[] extended =  new Long[data.length * 2];
+            T[] extended = (T[]) new Object[data.length * 2];
 
             System.arraycopy(data, 0, extended, 0, data.length);
 
             data = extended;
         }
-        data[actSize] = aLong;
+        data[actSize] = element;
+        actSize++;
         return true;
     }
 
@@ -87,22 +87,36 @@ public class MyArrayList implements List<Long> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        for (Object element : c) {
+            if (!contains(element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public boolean addAll(Collection<? extends Long> c) {
-        return false;
+    public boolean addAll(Collection<? extends T> c) {
+        boolean flag = true;
+        for (T element : c) {
+            flag &= add(element);
+        }
+        return flag;
     }
 
+
     @Override
-    public boolean addAll(int index, Collection<? extends Long> c) {
+    public boolean addAll(int index, Collection<? extends T> c) {
         return false;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean flag = true;
+        for (Object obj : c) {
+            flag &= remove(obj);
+        }
+        return flag;
     }
 
     @Override
@@ -112,11 +126,11 @@ public class MyArrayList implements List<Long> {
 
     @Override
     public void clear() {
-
+        actSize = 0;
     }
 
     @Override
-    public Long get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= actSize) {
             throw new RuntimeException("index out of bounds");
         }
@@ -125,58 +139,89 @@ public class MyArrayList implements List<Long> {
 
 
     @Override
-    public Long set(int index, Long element) {
+    public T set(int index, T element) {
         if (index < 0 || index >= actSize) {
             throw new RuntimeException("index out of bounds");
         }
-        data[index]=element;
-        return null;
-
+        T toSet = get(index);
+        data[index] = element;
+        return toSet;
     }
 
     @Override
-    public void add(int index, Long element) {
-        if (data.length - actSize <= data.length / 2) {
-            this.reSizeArray();
+    public void add(int index, T element) {
+        if (index < 0 || index > actSize) {
+            throw new IndexOutOfBoundsException();
+        }
+        add(element);
+        for (int i = actSize - 1; i > index; i--) {
+            data[i] = data[i - 1];
         }
         data[index] = element;
-        actSize++;
     }
 
+
     @Override
-    public Long remove(int index) {
-     return null;
+    public T remove(int index) {
+        T element = get(index);
+        for (int i = index; i < actSize - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        actSize--;
+        return element;
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        if (o == null) {
+            for (int i = 0; i < actSize; i++)
+                if (data[i] == null)
+                    return i;
+        } else {
+            for (int i = 0; i < actSize; i++)
+                if (o.equals(data[i]))
+                    return i;
+        }
+        return -1;
+    }
+
+    private boolean equals(Object target, Object element) {
+        if (target == null) {
+            return element == null;
+        } else {
+            return target.equals(element);
+        }
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return data.length-1;
+        return data.length - 1;
     }
 
     @Override
-    public ListIterator<Long> listIterator() {
-        return listIterator();
+    public ListIterator<T> listIterator() {
+        T[] copy = Arrays.copyOf(data, actSize);
+        return Arrays.asList(copy).listIterator();
     }
 
     @Override
-    public ListIterator<Long> listIterator(int index) {
-        return listIterator(0);
+    public ListIterator<T> listIterator(int index) {
+        T[] copy = Arrays.copyOf(data, actSize);
+        return Arrays.asList(copy).listIterator(index);
     }
 
     @Override
-    public List<Long> subList(int fromIndex, int toIndex) {
-        return null;
+    public List<T> subList(int fromIndex, int toIndex) {
+        if (fromIndex < 0 || toIndex >= actSize || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
+        T[] copy = Arrays.copyOfRange(data, fromIndex, toIndex);
+        return Arrays.asList(copy);
     }
+
 
     public void reSizeArray() {
         data = Arrays.copyOf(data, data.length * 2);
     }
-
-    ArrayList <String> list = new ArrayList<>();
 
 }
