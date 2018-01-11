@@ -7,7 +7,7 @@ import java.lang.reflect.Array;
 
 import static org.junit.Assert.*;
 
-public class MyArrayListTest {
+public class MyArrayListTest extends MyArrayListTestBase {
 
     MyArrayList myList = new MyArrayList();
 
@@ -98,5 +98,10 @@ public class MyArrayListTest {
 
     @Test
     public void subList() {
+    }
+
+    @Override
+    public ArrayMethod getArrayMethod() {
+        return null;
     }
 }
