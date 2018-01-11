@@ -45,7 +45,7 @@ public class MyArrayList implements List<Long> {
 
     @Override
     public boolean add(Long aLong) {
-
+        actSize++;
 
         if (actSize>=data.length) {
 
@@ -54,13 +54,8 @@ public class MyArrayList implements List<Long> {
             System.arraycopy(data, 0, extended, 0, data.length);
 
             data = extended;
-
         }
-
         data[actSize] = aLong;
-
-       actSize++;
-
         return true;
     }
 
@@ -79,7 +74,6 @@ public class MyArrayList implements List<Long> {
                     return true;
                 }
         }
-
         return false;
     }
 
@@ -132,7 +126,12 @@ public class MyArrayList implements List<Long> {
 
     @Override
     public Long set(int index, Long element) {
+        if (index < 0 || index >= actSize) {
+            throw new RuntimeException("index out of bounds");
+        }
+        data[index]=element;
         return null;
+
     }
 
     @Override
