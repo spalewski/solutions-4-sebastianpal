@@ -26,9 +26,8 @@ public class MyArrayListTest extends MyArrayListTestBase {
     @Test
     public void contains() {
     Assert.assertEquals(false, myTestList.contains(1));
+    myTestList.add(55);
     Assert.assertEquals(true, myTestList.contains(55));
-
-
     }
 
     @Test
