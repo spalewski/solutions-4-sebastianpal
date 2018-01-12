@@ -5,8 +5,13 @@ import org.junit.Test;
 
 public class MyArrayListTest extends MyArrayListTestBase {
 
+    @Override
+    public MyArrayList getArrayMethod() {
+        return new MyArrayList();
+    }
+
     MyArrayList myTestList = new MyArrayList();
-    
+
 
     @Test
     public void shouldCheckArraySize() {
@@ -18,16 +23,16 @@ public class MyArrayListTest extends MyArrayListTestBase {
 
     @Test
     public void ShouldCheckIsArrayEmpty() {
-    Assert.assertEquals(true, myTestList.isEmpty());
-    myTestList.add(55);
-    Assert.assertEquals(false, myTestList.isEmpty());
+        Assert.assertEquals(true, myTestList.isEmpty());
+        myTestList.add(55);
+        Assert.assertEquals(false, myTestList.isEmpty());
     }
 
     @Test
     public void contains() {
-    Assert.assertEquals(false, myTestList.contains(1));
-    myTestList.add(55);
-    Assert.assertEquals(true, myTestList.contains(55));
+        Assert.assertEquals(false, myTestList.contains(1));
+        myTestList.add(55);
+        Assert.assertEquals(true, myTestList.contains(55));
     }
 
     @Test
@@ -36,6 +41,10 @@ public class MyArrayListTest extends MyArrayListTestBase {
 
     @Test
     public void toArray() {
+    }
+
+    @Test
+    public void toArray1() {
     }
 
     @Test
@@ -79,6 +88,14 @@ public class MyArrayListTest extends MyArrayListTestBase {
     }
 
     @Test
+    public void add1() {
+    }
+
+    @Test
+    public void remove1() {
+    }
+
+    @Test
     public void indexOf() {
     }
 
@@ -90,14 +107,18 @@ public class MyArrayListTest extends MyArrayListTestBase {
     public void listIterator() {
     }
 
+    @Test
+    public void listIterator1() {
+    }
 
     @Test
     public void subList() {
     }
 
-    @Override
-    public MyArrayList getArrayMethod() {
-        return new MyArrayList();
+    @Test
+    public void reSizeArray() {
     }
 }
+
+
 

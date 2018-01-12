@@ -2,7 +2,7 @@ package pl.coderstrust.myArrayList;
 
 import java.util.*;
 
-public class MyArrayList<T> implements List<T> {
+public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     private T[] data;
     private int actSize = 0;
@@ -30,18 +30,43 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator<T>() {
+            private Object[] currentData = data;
+            private int pos = 0;
+
+            @Override
+            public boolean hasNext() {
+                return pos < currentData.length;
+            }
+
+            @Override
+            public T next() {
+                return (T) currentData[pos++];
+            }
+
+            @Override
+            public void remove() {
+                MyArrayList.this.remove(pos++);
+            }
+        };
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(data, actSize);
     }
+
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return null;
+        if (a.length < actSize)
+            return (T[]) Arrays.copyOf(data, actSize, a.getClass());
+        System.arraycopy(data, 0, a, 0, actSize);
+        if (a.length > actSize)
+            a[actSize] = null;
+        return a;
     }
+
 
     @Override
     public boolean add(T element) {
@@ -223,5 +248,4 @@ public class MyArrayList<T> implements List<T> {
     public void reSizeArray() {
         data = Arrays.copyOf(data, data.length * 2);
     }
-
 }
