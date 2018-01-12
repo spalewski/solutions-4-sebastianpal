@@ -30,8 +30,13 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
+        Object[] currentData = new Object[actSize];
+        for (int i = 0; i <actSize ; i++) {
+            currentData[i]=data[i];
+        }
+
         return new Iterator<T>() {
-            private Object[] currentData = data;
+
             private int pos = 0;
 
             @Override
@@ -46,7 +51,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
             @Override
             public void remove() {
-                MyArrayList.this.remove(pos++);
+                MyArrayList.this.remove(pos--);
             }
         };
     }
