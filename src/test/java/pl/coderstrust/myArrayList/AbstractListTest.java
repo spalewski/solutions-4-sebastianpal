@@ -254,15 +254,17 @@ public abstract class AbstractListTest {
         Assert.assertEquals(4, testList.lastIndexOf(3));
     }
 
-    @Test
-    public void listIterator() {
-    }
-
-    @Test
-    public void listIterator1() {
-    }
 
     @Test
     public void subList() {
+        testList.add(0);
+        testList.add(1);
+        testList.add(3);
+        testList.add(2);
+        testList.add(3);
+        testList.add(4);
+        ArrayList sublist = new ArrayList(testList.subList(4, 5));
+        Assert.assertEquals(1, sublist.size());
+        Assert.assertEquals(3, sublist.get(0));
     }
 }
