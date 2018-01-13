@@ -30,10 +30,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        Object[] currentData = new Object[actSize];
-        for (int i = 0; i <actSize ; i++) {
-            currentData[i]=data[i];
-        }
+
 
         return new Iterator<T>() {
 
@@ -43,14 +40,22 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return pos < currentData.length;
+                return pos !=size();
             }
 
             @Override
             public T next() {
                 int i = pos;
-                i=i+1;
-                return (T) currentData[pos=i];
+                if (i>=actSize)
+                    throw new NoSuchElementException();
+                Object[] currentData = new Object[actSize];
+                for (int j = 0; j <actSize ; j++) {
+                    currentData[j]=data[j];
+                }
+                if (i>= currentData.length)
+                    throw new ConcurrentModificationException();
+                pos=i+1;
+                return (T) currentData[last=i];
 
             }
 
@@ -59,7 +64,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
                 if (last < 0)
                     throw new IllegalStateException();
 
-                MyArrayList.this.remove(pos);
+                MyArrayList.this.remove(last);
                 pos = last;
                 last=-1;
 

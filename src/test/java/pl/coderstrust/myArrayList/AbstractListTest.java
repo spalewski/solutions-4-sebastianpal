@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class AbstractListTest {
@@ -42,8 +43,17 @@ List testList = getList();
         Assert.assertEquals(2,testList.iterator().next());
         testList.add(3);
         testList.add(4);
-        testList.iterator().remove();
-        //Assert.assertEquals(1,testList.size());
+
+        Iterator itr = testList.iterator();
+
+        while (itr.hasNext())
+        {
+            int x = (Integer)itr.next();
+            if (x <= 2)
+                itr.remove();
+        }
+
+        Assert.assertEquals(2, testList.size());
 
     }
 
