@@ -38,6 +38,8 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         return new Iterator<T>() {
 
             private int pos = 0;
+            int last = -1;
+
 
             @Override
             public boolean hasNext() {
@@ -46,12 +48,21 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
             @Override
             public T next() {
-                return (T) currentData[pos++];
+                int i = pos;
+                i=i+1;
+                return (T) currentData[pos=i];
+
             }
 
             @Override
             public void remove() {
-                MyArrayList.this.remove(pos--);
+                if (last < 0)
+                    throw new IllegalStateException();
+
+                MyArrayList.this.remove(pos);
+                pos = last;
+                last=-1;
+
             }
         };
     }
@@ -91,6 +102,16 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public boolean remove(Object o) {
+        if (actSize <= data.length/2) {
+
+            T[] extended = (T[]) new Object[data.length / 2];
+
+            System.arraycopy(data, 0, extended, 0, data.length);
+
+            data = extended;
+        }
+
+
         if (o == null) {
             for (int index = 0; index < actSize; index++)
                 if (data[index] == null) {
