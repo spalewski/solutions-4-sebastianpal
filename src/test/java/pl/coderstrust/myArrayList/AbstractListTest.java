@@ -235,7 +235,7 @@ public abstract class AbstractListTest {
     }
 
     @Test
-    public void indexOf() {
+    public void shouldCheckIsReturningindexOf() {
 
         testList.add(0);
         testList.add(1);
@@ -244,7 +244,7 @@ public abstract class AbstractListTest {
     }
 
     @Test
-    public void lastIndexOf() {
+    public void shouldCheckIsReturninglastIndexOf() {
         testList.add(0);
         testList.add(1);
         testList.add(3);
@@ -256,7 +256,7 @@ public abstract class AbstractListTest {
 
 
     @Test
-    public void subList() {
+    public void shouldCheckIsExcractingsubList() {
         testList.add(0);
         testList.add(1);
         testList.add(3);
