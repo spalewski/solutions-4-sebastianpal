@@ -10,7 +10,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
 
     public MyArrayList() {
-        data = (T[]) new Object[this.fixSize];
+        data = (T[]) new Object[ this.fixSize ];
     }
 
     @Override
@@ -40,22 +40,22 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return pos !=size();
+                return pos != size();
             }
 
             @Override
             public T next() {
                 int i = pos;
-                if (i>=actSize)
+                if (i >= actSize)
                     throw new NoSuchElementException();
-                Object[] currentData = new Object[actSize];
-                for (int j = 0; j <actSize ; j++) {
-                    currentData[j]=data[j];
+                Object[] currentData = new Object[ actSize ];
+                for (int j = 0; j < actSize; j++) {
+                    currentData[ j ] = data[ j ];
                 }
-                if (i>= currentData.length)
+                if (i >= currentData.length)
                     throw new ConcurrentModificationException();
-                pos=i+1;
-                return (T) currentData[last=i];
+                pos = i + 1;
+                return (T) currentData[ last = i ];
 
             }
 
@@ -66,7 +66,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
                 MyArrayList.this.remove(last);
                 pos = last;
-                last=-1;
+                last = -1;
 
             }
         };
@@ -84,7 +84,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
             return (T[]) Arrays.copyOf(data, actSize, a.getClass());
         System.arraycopy(data, 0, a, 0, actSize);
         if (a.length > actSize)
-            a[actSize] = null;
+            a[ actSize ] = null;
         return a;
     }
 
@@ -94,38 +94,39 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
         if (actSize >= data.length) {
 
-            T[] extended = (T[]) new Object[data.length * 2];
+            T[] extended = (T[]) new Object[ data.length * 2 ];
 
             System.arraycopy(data, 0, extended, 0, data.length);
 
             data = extended;
         }
-        data[actSize] = element;
+        data[ actSize ] = element;
         actSize++;
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        if (actSize <= data.length/2) {
 
-            T[] extended = (T[]) new Object[data.length / 2];
+        if (actSize <= data.length / 4) {
+
+            T[] extended = (T[]) new Object[ data.length / 2 ];
 
             System.arraycopy(data, 0, extended, 0, data.length);
 
             data = extended;
         }
 
-
         if (o == null) {
             for (int index = 0; index < actSize; index++)
-                if (data[index] == null) {
+                if (data[ index ] == null) {
                     fastRemove(index);
                     return true;
+
                 }
         } else {
             for (int index = 0; index < actSize; index++)
-                if (o.equals(data[index])) {
+                if (o.equals(data[ index ])) {
                     fastRemove(index);
                     return true;
                 }
@@ -138,7 +139,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         if (numMoved > 0)
             System.arraycopy(data, index + 1, data, index,
                     numMoved);
-        data[--actSize] = null;
+        data[ --actSize ] = null;
     }
 
     @Override
@@ -168,17 +169,30 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        boolean flag = true;
-        for (Object obj : c) {
-            flag &= remove(obj);
+        boolean modified = false;
+        Iterator<?> e = iterator();
+        while (e.hasNext()) {
+            if (c.contains(e.next())) {
+                e.remove();
+                modified = true;
+            }
         }
-        return flag;
+        return modified;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        boolean changed = false;
+        for (int i = size() - 1; i >= 0; i--) {
+            Object obj = get(i);
+            if (!c.contains(obj)) {
+                remove(i);
+                changed = true;
+            }
+        }
+        return changed;
     }
+
 
     @Override
     public void clear() {
@@ -190,7 +204,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         if (index < 0 || index >= actSize) {
             throw new RuntimeException("index out of bounds");
         }
-        return data[index];
+        return data[ index ];
     }
 
 
@@ -200,7 +214,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
             throw new RuntimeException("index out of bounds");
         }
         T toSet = get(index);
-        data[index] = element;
+        data[ index ] = element;
         return toSet;
     }
 
@@ -211,9 +225,9 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         }
         add(element);
         for (int i = actSize - 1; i > index; i--) {
-            data[i] = data[i - 1];
+            data[ i ] = data[ i - 1 ];
         }
-        data[index] = element;
+        data[ index ] = element;
     }
 
 
@@ -221,7 +235,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
     public T remove(int index) {
         T element = get(index);
         for (int i = index; i < actSize - 1; i++) {
-            data[i] = data[i + 1];
+            data[ i ] = data[ i + 1 ];
         }
         actSize--;
         return element;
@@ -231,27 +245,28 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
     public int indexOf(Object o) {
         if (o == null) {
             for (int i = 0; i < actSize; i++)
-                if (data[i] == null)
+                if (data[ i ] == null)
                     return i;
         } else {
             for (int i = 0; i < actSize; i++)
-                if (o.equals(data[i]))
+                if (o.equals(data[ i ]))
                     return i;
         }
         return -1;
     }
 
-    private boolean equals(Object target, Object element) {
-        if (target == null) {
-            return element == null;
-        } else {
-            return target.equals(element);
-        }
-    }
-
     @Override
     public int lastIndexOf(Object o) {
-        return data.length - 1;
+        if (o == null) {
+            for (int i = actSize - 1; i >= 0; i--)
+                if (data[ i ] == null)
+                    return i;
+        } else {
+            for (int i = actSize - 1; i >= 0; i--)
+                if (o.equals(data[ i ]))
+                    return i;
+        }
+        return -1;
     }
 
     @Override
@@ -273,10 +288,5 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         }
         T[] copy = Arrays.copyOfRange(data, fromIndex, toIndex);
         return Arrays.asList(copy);
-    }
-
-
-    public void reSizeArray() {
-        data = Arrays.copyOf(data, data.length * 2);
     }
 }
