@@ -4,11 +4,11 @@ import java.util.*;
 
 public class MySimpleLinkedList implements List<Object> {
     private int size;
-    Link first;
+    Link head;
     Link last;
 
     public MySimpleLinkedList() {
-        first = null;
+        head = null;
         size = 0;
     }
 
@@ -42,8 +42,8 @@ public class MySimpleLinkedList implements List<Object> {
     @Override
     public boolean add(java.lang.Object o) {
         Link<Object> node = new Link(o);
-        if (this.first == null) {
-            this.first = this.last = node;
+        if (this.head == null) {
+            this.head = this.last = node;
         } else {
             this.last.setNext(node);
             this.last = node;
@@ -55,10 +55,10 @@ public class MySimpleLinkedList implements List<Object> {
 
     @Override
     public boolean remove(java.lang.Object o) {
-        if (this.first == null) {
+        if (this.head == null) {
             throw new NoSuchElementException();
-        } else if (this.first.getLink().equals(o)) {
-            this.first = this.first.getNext();
+        } else if (this.head.getLink().equals(o)) {
+            this.head = this.head.getNext();
             this.size--;
         }
         return true;
@@ -86,7 +86,11 @@ public class MySimpleLinkedList implements List<Object> {
 
     @Override
     public java.lang.Object get(int index) {
-        Link size
+        if (head == null) throw new IndexOutOfBoundsException();
+        Link tmp = head;
+        for (int k = 0; k < index; k++) tmp = tmp.next;
+        if( tmp == null) throw new IndexOutOfBoundsException();
+        return tmp.data;
     }
 
     @Override
@@ -151,7 +155,7 @@ public class MySimpleLinkedList implements List<Object> {
 
     @Override
     public boolean contains(java.lang.Object o) {
-        Link<Object> current = this.first;
+        Link<Object> current = this.head;
 
         while (current != null) {
             if (current.getLink().equals(o)) {
