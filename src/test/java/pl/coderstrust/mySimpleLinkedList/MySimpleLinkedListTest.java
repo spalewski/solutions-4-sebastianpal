@@ -8,4 +8,5 @@ public class MySimpleLinkedListTest extends MySimpleLinkedListTestBase {
     public List getList() {
         return new MySimpleLinkedList();
     }
+
 }

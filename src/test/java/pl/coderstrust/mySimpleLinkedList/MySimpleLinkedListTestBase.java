@@ -24,7 +24,6 @@ abstract class  MySimpleLinkedListTestBase {
         Assert.assertEquals(true, testList.contains(6));
 
     }
-
     @Test
     public void remove() {
     }
