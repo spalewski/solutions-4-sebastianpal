@@ -28,45 +28,46 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         return indexOf(o) != -1;
     }
 
+    private class Itr implements Iterator<T> {
+
+            int position;
+            int lastReturned = -1;
+
+            Itr() {}
+
+        @Override
+        public boolean hasNext() {
+                return position != size();
+        }
+        @Override
+        public T next() {
+            if (position >= actualSize){
+                throw new NoSuchElementException("No more elements is Array, last index is " + actualSize);}
+            Object[] currentData = new Object[ actualSize ];
+            for (int j = 0; j < actualSize; j++) {
+                currentData[ j ] = data[ j ];
+            }
+            ++position;
+            return (T) currentData[ lastReturned = position ];
+        }
+        @Override
+        public void remove() {
+            if (lastReturned < 0)
+                throw new IllegalStateException();
+
+            MyArrayList.this.remove(lastReturned);
+            position = lastReturned;
+            lastReturned = -1;
+
+        }
+    }
+
+
     @Override
     public Iterator<T> iterator() {
+        
+        return new Itr();
 
-
-        return new Iterator<T>() {
-
-            private int position = 0;
-            int last = -1;
-
-
-            @Override
-            public boolean hasNext() {
-                return position != size();
-            }
-
-            @Override
-            public T next() {
-                if (position >= actualSize){
-                    throw new NoSuchElementException("No more elements is Array, last index is " + actualSize);}
-                Object[] currentData = new Object[ actualSize ];
-                for (int j = 0; j < actualSize; j++) {
-                    currentData[ j ] = data[ j ];
-                }
-                ++position;
-                return (T) currentData[ last = position ];
-
-            }
-
-            @Override
-            public void remove() {
-                if (last < 0)
-                    throw new IllegalStateException();
-
-                MyArrayList.this.remove(last);
-                position = last;
-                last = -1;
-
-            }
-        };
     }
 
     @Override
