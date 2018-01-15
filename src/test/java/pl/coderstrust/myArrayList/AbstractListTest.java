@@ -17,20 +17,32 @@ public abstract class AbstractListTest {
         Assert.assertEquals(0, testList.size());
         testList.add((long) 1);
         Assert.assertEquals(1, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);
+        }
+        Assert.assertEquals(10001, testList.size());
+        Assert.assertEquals(4001, testList.get(4000));
     }
 
     @Test
-    public void ShouldCheckIsArrayEmptyMethod() {
+    public void shouldCheckIsArrayEmptyMethod() {
         Assert.assertEquals(true, testList.isEmpty());
         testList.add((long) 2);
+        Assert.assertEquals(false, testList.isEmpty());
+        Assert.assertEquals(1, testList.size());
+        for (int i = 0; i <1000000 ; i++) {
+            testList.add(i+2);}
         Assert.assertEquals(false, testList.isEmpty());
     }
 
     @Test
-    public void ShouldCheckcontainsMethod() {
+    public void shouldCheckcontainsMethod() {
         Assert.assertEquals(false, testList.contains(1));
         testList.add(3);
         Assert.assertEquals(true, testList.contains(3));
+        for (int i = 0; i <1000000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(true, testList.contains(9899));
     }
 
     @Test
@@ -43,15 +55,18 @@ public abstract class AbstractListTest {
         Assert.assertEquals(2, testList.iterator().next());
         testList.add(3);
         testList.add(4);
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+
 
         Iterator itr = testList.iterator();
 
         while (itr.hasNext()) {
-            int x = (Integer) itr.next();
+            int x = (int) itr.next();
             if (x <= 2)
                 itr.remove();
         }
-        Assert.assertEquals(2, testList.size());
+        Assert.assertEquals(10001, testList.size());
     }
 
     @Test
@@ -59,23 +74,14 @@ public abstract class AbstractListTest {
         testList.add(1);
         testList.add(2);
         testList.add(3);
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
 
         Object[] taken = new Object[ testList.size() ];
         Assert.assertEquals(null, taken[ 1 ]);
         taken = testList.toArray(taken);
         Assert.assertEquals(2, taken[ 1 ]);
-    }
-
-    @Test
-    public void toArray1() {
-        testList.add(1);
-        testList.add(2);
-        testList.add(3);
-
-        Object[] taken = new Object[ testList.size() ];
-        Assert.assertEquals(null, taken[ 1 ]);
-        taken = testList.toArray(taken);
-        Assert.assertEquals(2, taken[ 1 ]);
+        Assert.assertEquals(10003, taken.length);
     }
 
     @Test
@@ -84,15 +90,19 @@ public abstract class AbstractListTest {
         testList.add(10);
         testList.add(-15);
         testList.add(20);
-        Assert.assertEquals(4, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(10004, testList.size());
     }
 
     @Test
     public void shouldCheckIsRemoveElement() {
         testList.add(10);
-        Assert.assertEquals(1, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(10001, testList.size());
         testList.remove(0);
-        Assert.assertEquals(0, testList.size());
+        Assert.assertEquals(10000, testList.size());
     }
 
     @Test
@@ -122,17 +132,19 @@ public abstract class AbstractListTest {
         ArrayList data = new ArrayList();
         class TestClass<T> {
             private T testText;
-
             public TestClass(T testText) {
                 this.testText = testText;
             }
         }
         TestClass testClass = new TestClass<>("blabla");
-        testList.add(testClass);
-        testList.add(testClass);
-        Assert.assertEquals(2, testList.size());
+        data.add(testClass);
+        data.add(testClass);
+        data.add(testClass);
+        for (int i = 0; i <10000 ; i++) {
+            data.add(i+2);}
+        Assert.assertEquals(0, testList.size());
         testList.addAll(data);
-        Assert.assertEquals(2, testList.size());
+        Assert.assertEquals(10003, testList.size());
     }
 
 
@@ -142,7 +154,9 @@ public abstract class AbstractListTest {
         testList.add(10);
         testList.add(-15);
         testList.add(20);
-        Assert.assertEquals(4, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(10004, testList.size());
         testList.removeAll(testList);
         Assert.assertEquals(0, testList.size());
     }
@@ -155,14 +169,16 @@ public abstract class AbstractListTest {
         testList.add(2);
         testList.add(3);
         testList.add(4);
-        Assert.assertEquals(6, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(10006, testList.size());
         ArrayList toRetain = new ArrayList();
         toRetain.add(0);
         toRetain.add(1);
         toRetain.add(2);
         toRetain.add(3);
         testList.retainAll(toRetain);
-        Assert.assertEquals(5, testList.size());
+        Assert.assertEquals(7, testList.size());
     }
 
     @Test
@@ -171,7 +187,9 @@ public abstract class AbstractListTest {
         testList.add(10);
         testList.add(-15);
         testList.add(20);
-        Assert.assertEquals(4, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(10004, testList.size());
         testList.clear();
         Assert.assertEquals(0, testList.size());
     }
@@ -211,7 +229,9 @@ public abstract class AbstractListTest {
         TestClass testClass = new TestClass<>("blabla");
         testList.add(testClass);
         testList.add(testClass);
-        Assert.assertEquals(2, testList.size());
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(testClass);}
+        Assert.assertEquals(10002, testList.size());
 
     }
 
@@ -240,7 +260,10 @@ public abstract class AbstractListTest {
         testList.add(0);
         testList.add(1);
         testList.add(3);
-        Assert.assertEquals(1, testList.indexOf(1));
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(5, testList.indexOf(4));
+        Assert.assertEquals(-1, testList.lastIndexOf(7769555));
     }
 
     @Test
@@ -251,7 +274,10 @@ public abstract class AbstractListTest {
         testList.add(2);
         testList.add(3);
         testList.add(4);
-        Assert.assertEquals(4, testList.lastIndexOf(3));
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        Assert.assertEquals(7773, testList.lastIndexOf(7769));
+        Assert.assertEquals(-1, testList.lastIndexOf(776454549));
     }
 
 
@@ -263,8 +289,10 @@ public abstract class AbstractListTest {
         testList.add(2);
         testList.add(3);
         testList.add(4);
-        ArrayList sublist = new ArrayList(testList.subList(4, 5));
-        Assert.assertEquals(1, sublist.size());
-        Assert.assertEquals(3, sublist.get(0));
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+        ArrayList sublist = new ArrayList(testList.subList(5, 3434));
+        Assert.assertEquals(3429, sublist.size());
+        Assert.assertEquals(4, sublist.get(0));
     }
 }

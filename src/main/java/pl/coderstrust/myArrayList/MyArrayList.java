@@ -43,7 +43,8 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
         @Override
         public T next() {
-            if (position >= actualSize) {
+            int i = position;
+            if (i >= actualSize) {
                 throw new NoSuchElementException("No more elements is Array, last index is " + actualSize);
             }
             Object[] currentData = new Object[ actualSize ];
@@ -51,7 +52,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
                 currentData[ j ] = data[ j ];
             }
             ++position;
-            return (T) currentData[ lastReturned = position ];
+            return (T) currentData[ lastReturned = i ];
         }
 
         @Override
@@ -68,9 +69,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-
         return new Itr();
-
     }
 
     @Override
@@ -177,7 +176,6 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         return true;
     }
 
-
     @Override
     public boolean removeAll(Collection<?> elements) {
         boolean modified = false;
@@ -210,10 +208,9 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
         for (int i = 0; i < data.length; i++) {
             data[ i ] = null;
         }
-
         actualSize = 0;
         T[] cleared = (T[]) new Object[ initialSize ];
-        System.arraycopy(data, 0, cleared, 0, data.length);
+        System.arraycopy(data, 0, cleared, 0, initialSize);
         data = cleared;
     }
 
@@ -292,63 +289,13 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        return listIterator();
+        return new ListItr(0);
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-
-        return new ListIterator<T>() {
-            int cursor = index;
-            int lastReturned = -1;
-
-            @Override
-            public boolean hasNext() {
-                return false;
-            }
-
-            @Override
-            public T next() {
-                return null;
-            }
-
-            @Override
-            public boolean hasPrevious() {
-                return cursor != 0;
-            }
-
-            @Override
-            public T previous() {
-                return null;
-            }
-
-            @Override
-            public int nextIndex() {
-                return cursor;
-            }
-
-            @Override
-            public int previousIndex() {
-                return cursor - 1;
-            }
-
-            @Override
-            public void remove() {
-
-            }
-
-            @Override
-            public void set(T t) {
-
-            }
-
-            @Override
-            public void add(T t) {
-
-            }
-        };
+        return new ListItr(index);
     }
-
 
     private class ListItr extends Itr implements ListIterator<T> {
 
@@ -397,7 +344,6 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
             lastReturned = -1;
         }
     }
-
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
