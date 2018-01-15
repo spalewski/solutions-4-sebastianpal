@@ -30,19 +30,22 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     private class Itr implements Iterator<T> {
 
-            int position;
-            int lastReturned = -1;
+        int position;
+        int lastReturned = -1;
 
-            Itr() {}
+        Itr() {
+        }
 
         @Override
         public boolean hasNext() {
-                return position != size();
+            return position != size();
         }
+
         @Override
         public T next() {
-            if (position >= actualSize){
-                throw new NoSuchElementException("No more elements is Array, last index is " + actualSize);}
+            if (position >= actualSize) {
+                throw new NoSuchElementException("No more elements is Array, last index is " + actualSize);
+            }
             Object[] currentData = new Object[ actualSize ];
             for (int j = 0; j < actualSize; j++) {
                 currentData[ j ] = data[ j ];
@@ -50,10 +53,10 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
             ++position;
             return (T) currentData[ lastReturned = position ];
         }
+
         @Override
         public void remove() {
-            if (lastReturned < 0)
-                throw new IllegalStateException();
+            if (lastReturned < 0) ;
 
             MyArrayList.this.remove(lastReturned);
             position = lastReturned;
@@ -65,7 +68,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        
+
         return new Itr();
 
     }
@@ -77,27 +80,26 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
 
     @Override
-    public <T> T[] toArray(T[] a) {
-        if (a.length < actualSize)
-            return (T[]) Arrays.copyOf(data, actualSize, a.getClass());
-        System.arraycopy(data, 0, a, 0, actualSize);
-        if (a.length > actualSize){
-            a[ actualSize ] = null;}
-        return a;
+    public <T> T[] toArray(T[] element) {
+        if (element.length < actualSize) {
+            return (T[]) Arrays.copyOf(data, actualSize, element.getClass());
+        }
+        System.arraycopy(data, 0, element, 0, actualSize);
+        if (element.length > actualSize) {
+            for (int i = actualSize; i < data.length; i++) {
+                element[ i ] = null;
+            }
+        }
+        return element;
     }
-
 
     @Override
     public boolean add(T element) {
 
-        data[ actualSize++] = element;
-        //actualSize++;
+        data[ actualSize++ ] = element;
         if (actualSize == data.length) {
-
             T[] extended = (T[]) new Object[ data.length * 2 ];
-
             System.arraycopy(data, 0, extended, 0, data.length);
-
             data = extended;
         }
 
@@ -122,11 +124,8 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
                 }
         }
         if (actualSize <= data.length / 4) {
-
             T[] shortened = (T[]) new Object[ data.length / 2 ];
-
             System.arraycopy(data, 0, shortened, 0, data.length);
-
             data = shortened;
         }
 
@@ -162,17 +161,30 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
 
     @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+    public boolean addAll(int index, Collection<? extends T> elements) {
+        Object[] a = elements.toArray();
+
+        int numNew = a.length;
+        if (numNew == 0)
+            return false;
+        Object[] elementData;
+        final int s;
+        if (numNew > (elementData = this.data).length - (s = actualSize)) {
+            elementData = new Object[ s + numNew ];
+            System.arraycopy(a, 0, elementData, s, numNew);
+            actualSize = s + numNew;
+        }
+        return true;
     }
 
+
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(Collection<?> elements) {
         boolean modified = false;
-        Iterator<?> e = iterator();
-        while (e.hasNext()) {
-            if (c.contains(e.next())) {
-                e.remove();
+        Iterator<?> iterator = iterator();
+        while (iterator.hasNext()) {
+            if (elements.contains(iterator.next())) {
+                iterator.remove();
                 modified = true;
             }
         }
@@ -180,11 +192,11 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
     }
 
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(Collection<?> elements) {
         boolean changed = false;
         for (int i = size() - 1; i >= 0; i--) {
             Object obj = get(i);
-            if (!c.contains(obj)) {
+            if (!elements.contains(obj)) {
                 remove(i);
                 changed = true;
             }
@@ -195,38 +207,47 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public void clear() {
+        for (int i = 0; i < data.length; i++) {
+            data[ i ] = null;
+        }
+
         actualSize = 0;
+        T[] cleared = (T[]) new Object[ initialSize ];
+        System.arraycopy(data, 0, cleared, 0, data.length);
+        data = cleared;
     }
 
     @Override
     public T get(int index) {
         if (index < 0 || index >= actualSize) {
-            throw new RuntimeException("index out of bounds");
         }
         return data[ index ];
     }
 
 
     @Override
-    public T set(int previousValue, T element) {
-        if (previousValue < 0 || previousValue >= actualSize) {
+    public T set(int index, T element) {
+        if (index < 0 || index >= actualSize) {
             throw new RuntimeException("index out of bounds");
         }
-        T toSet = get(previousValue);
-        data[ previousValue ] = element;
-        return toSet;
+        T previousValue = get(index);
+        data[ index ] = element;
+        return previousValue;
     }
 
     @Override
-    public void add(int previousValue, T element) {
-        if (previousValue < 0 || previousValue > actualSize) {
+    public void add(int index, T element) {
+        if (index < 0 || index > actualSize) {
             throw new IndexOutOfBoundsException();
         }
-        add(element);
-        for (int i = actualSize - 1; i > previousValue; i--) {
-            data[ i ] = data[ i - 1 ];
+        if (actualSize == data.length) {
+            T[] extended = (T[]) new Object[ data.length * 2 ];
+            System.arraycopy(data, 0, extended, 0, data.length);
+            data = extended;
         }
-        data[ previousValue ] = element;
+        data[ index ] = element;
+        ++actualSize;
+
     }
 
 
@@ -237,6 +258,7 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
             data[ i ] = data[ i + 1 ];
         }
         actualSize--;
+        data[ data.length - 1 ] = null;
         return element;
     }
 
@@ -270,15 +292,112 @@ public class MyArrayList<T> implements List<T>, Iterable<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        T[] copy = Arrays.copyOf(data, actualSize);
-        return Arrays.asList(copy).listIterator();
+        return listIterator();
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        T[] copy = Arrays.copyOf(data, actualSize);
-        return Arrays.asList(copy).listIterator(index);
+
+        return new ListIterator<T>() {
+            int cursor = index;
+            int lastReturned = -1;
+
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public T next() {
+                return null;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return cursor != 0;
+            }
+
+            @Override
+            public T previous() {
+                return null;
+            }
+
+            @Override
+            public int nextIndex() {
+                return cursor;
+            }
+
+            @Override
+            public int previousIndex() {
+                return cursor - 1;
+            }
+
+            @Override
+            public void remove() {
+
+            }
+
+            @Override
+            public void set(T t) {
+
+            }
+
+            @Override
+            public void add(T t) {
+
+            }
+        };
     }
+
+
+    private class ListItr extends Itr implements ListIterator<T> {
+
+        ListItr(int index) {
+            super();
+            position = index;
+
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return position != 0;
+        }
+
+        @Override
+        public T previous() {
+            int i = position - 1;
+            if (i < 0) {
+                throw new NoSuchElementException("No more previous elements");
+            }
+            Object[] elementData = MyArrayList.this.data;
+            position = i;
+            return (T) elementData[ lastReturned = i ];
+        }
+
+        @Override
+        public int nextIndex() {
+            return position;
+        }
+
+        @Override
+        public int previousIndex() {
+            return position - 1;
+        }
+
+        @Override
+        public void set(T element) {
+            MyArrayList.this.set(lastReturned, element);
+        }
+
+        @Override
+        public void add(T element) {
+            int i = position;
+            MyArrayList.this.add(i, element);
+            position = i + 1;
+            lastReturned = -1;
+        }
+    }
+
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
