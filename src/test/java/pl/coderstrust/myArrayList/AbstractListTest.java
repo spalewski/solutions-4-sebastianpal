@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class AbstractListTest {
     public abstract List getList();
 
-    List testList = getList();
+    private List testList = getList();
 
     @Test
     public void shouldCheckArraySizeMethod() {
