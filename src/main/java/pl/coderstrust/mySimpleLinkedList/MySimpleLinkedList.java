@@ -1,10 +1,8 @@
 package pl.coderstrust.mySimpleLinkedList;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
-public class MySimpleLinkedList <T> implements Collection <T> {
+public class MySimpleLinkedList implements List<Object> {
     private int size;
     Link first;
     Link last;
@@ -41,13 +39,12 @@ public class MySimpleLinkedList <T> implements Collection <T> {
         }
     }
 
-
     @Override
-    public boolean add(T data) {
-        Link<T> node = new Link(data);
+    public boolean add(java.lang.Object o) {
+        Link<Object> node = new Link(o);
         if (this.first == null) {
             this.first = this.last = node;
-        }else{
+        } else {
             this.last.setNext(node);
             this.last = node;
         }
@@ -55,56 +52,30 @@ public class MySimpleLinkedList <T> implements Collection <T> {
         return true;
     }
 
+
     @Override
-    public boolean remove(Object o) {
-            if (this.first == null) {
-                throw new NoSuchElementException();
-            } else if (this.first.getLink().equals(o)) {
-                this.first = this.first.getNext();
-                this.size--;
-            }
+    public boolean remove(java.lang.Object o) {
+        if (this.first == null) {
+            throw new NoSuchElementException();
+        } else if (this.first.getLink().equals(o)) {
+            this.first = this.first.getNext();
+            this.size--;
+        }
         return true;
     }
-    @Override
-    public boolean contains(Object o) {
-            Link<T> current = this.first;
-
-            while (current != null) {
-                if (current.getLink().equals(o)) {
-                    return true;
-                }
-                current = current.getNext();
-            }
-            return false;
-        }
-
-    ///////////////////////////////////////////////////////////////
 
     @Override
-    public int size() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
+    public boolean containsAll(Collection<?> c) {
         return false;
     }
 
-
-
     @Override
-    public Iterator iterator() {
-        return null;
+    public boolean removeAll(Collection<?> c) {
+        return false;
     }
 
     @Override
-    public Object[] toArray() {
-        return new Object[ 0 ];
-    }
-
-
-    @Override
-    public boolean addAll(Collection c) {
+    public boolean retainAll(Collection<?> c) {
         return false;
     }
 
@@ -114,22 +85,97 @@ public class MySimpleLinkedList <T> implements Collection <T> {
     }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public java.lang.Object get(int index) {
+        Link size
+    }
+
+    @Override
+    public java.lang.Object remove(int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(java.lang.Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(java.lang.Object o) {
+        return 0;
+    }
+
+    @Override
+    public ListIterator<java.lang.Object> listIterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator<java.lang.Object> listIterator(int index) {
+        return null;
+    }
+
+    @Override
+    public List<java.lang.Object> subList(int fromIndex, int toIndex) {
+        return null;
+    }
+
+    @Override
+    public void add(int index, java.lang.Object element) {
+
+    }
+
+    @Override
+    public java.lang.Object set(int index, java.lang.Object element) {
+        return null;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends java.lang.Object> c) {
         return false;
     }
 
     @Override
-    public boolean removeAll(Collection c) {
+    public boolean addAll(Collection<? extends java.lang.Object> c) {
         return false;
     }
 
     @Override
-    public boolean containsAll(Collection c) {
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
         return false;
     }
 
     @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[ 0 ];
+    public boolean contains(java.lang.Object o) {
+        Link<Object> current = this.first;
+
+        while (current != null) {
+            if (current.getLink().equals(o)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+    }
+
+    @Override
+    public Iterator<java.lang.Object> iterator() {
+        return null;
+    }
+
+    @Override
+    public java.lang.Object[] toArray() {
+        return new java.lang.Object[ 0 ];
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return null;
     }
 }
+
+
