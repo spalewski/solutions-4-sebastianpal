@@ -17,9 +17,9 @@ public class MySimpleLinkedList implements List<Object> {
         private T data;
         private Link<T> next;
 
-        public Link(T data) {
-            this.data = data;
-            this.next = null;
+        public Link(T element) {
+            this.data = element;
+            this.next = next;
         }
 
         public void setLink(T data) {
@@ -55,12 +55,8 @@ public class MySimpleLinkedList implements List<Object> {
 
     @Override
     public boolean remove(java.lang.Object o) {
-        if (this.head == null) {
-            throw new NoSuchElementException();
-        } else if (this.head.getLink().equals(o)) {
-            this.head = this.head.getNext();
-            this.size--;
-        }
+
+        this.size--;
         return true;
     }
 
@@ -86,11 +82,11 @@ public class MySimpleLinkedList implements List<Object> {
 
     @Override
     public java.lang.Object get(int index) {
-        if (head == null) throw new IndexOutOfBoundsException();
-        Link tmp = head;
-        for (int k = 0; k < index; k++) tmp = tmp.next;
-        if( tmp == null) throw new IndexOutOfBoundsException();
-        return tmp.data;
+        Link temp = head;
+        for (int k = 0; k < index; k++){
+            temp = temp.next;
+        }
+        return temp.data;
     }
 
     @Override
