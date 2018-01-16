@@ -32,7 +32,22 @@ public class isIpAddressTestParametrized {
                 {"192.168.0.1", true},
                 {"255.255.255.254", true},
                 {"985.255.255.254", false},
+                {"245...0.0.1", false},
+                {"255.-150.0.1", false},
                 {"abb.0.0.1", false},
+                {"256.0.0.1", false},
+                {"0.256.0.1", false},
+                {"0.0.256.0", false},
+                {"0.0.0.256", false},
+                {"1.0.0.1.1", false},
+                {"abb.0.0.1", false},
+                {"0.0.0", false},
+                {"1.0", false},
+                {"1", false},
+                {"abb.0.0.1", false},
+                {"0.abb.0.1", false},
+                {"0.0.abb.1", false},
+                {"0.0.0.abb", false},
                 {"192.168.15.1", true}});
     }
 
