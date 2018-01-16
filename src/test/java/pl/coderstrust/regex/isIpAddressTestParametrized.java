@@ -37,7 +37,7 @@ public class isIpAddressTestParametrized {
     }
 
     @Test
-    public void shoildCheckIpAddressesWithParameters() {
+    public void shoildCheckIpAddressesWithParametrizedTest() {
         Assert.assertEquals(expected, IsIpAddress.isIpAddress(testIP));
     }
 }
