@@ -8,6 +8,7 @@ public class IsIpAddressTest {
     @Test
     public void shouldCheckisIpAddressValid() {
 
+        IsIpAddress isIpAddress = new IsIpAddress();
         Assert.assertEquals(true, IsIpAddress.isIpAddress("255.255.255.254"));
         Assert.assertEquals(true, IsIpAddress.isIpAddress("192.168.0.1"));
 
