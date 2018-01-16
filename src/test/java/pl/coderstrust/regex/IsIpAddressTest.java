@@ -3,12 +3,10 @@ package pl.coderstrust.regex;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class IsIpAddressTest {
 
     @Test
     public void shouldCheckisIpAddressValid() {
-        IsIpAddress isIpAddress = new IsIpAddress();
 
         Assert.assertEquals(true, IsIpAddress.isIpAddress("255.255.255.254"));
         Assert.assertEquals(true, IsIpAddress.isIpAddress("192.168.0.1"));
@@ -22,13 +20,5 @@ public class IsIpAddressTest {
             int b4 = (i) & 0xff;
             String ip = b1+"."+b2+"."+b3+"."+b4;
             Assert.assertEquals(true, IsIpAddress.isIpAddress(ip));}
-
-        }
-
-    @Test
- //   @Parameters({"255.255.255.254"})
-
-    public void checkAllAdresses(){
-        return;
     }
 }

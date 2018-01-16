@@ -3,7 +3,7 @@ package pl.coderstrust.regex;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IsIpAddress {
+class IsIpAddress {
 
     private static Matcher matcher;
     private static Pattern pattern;
