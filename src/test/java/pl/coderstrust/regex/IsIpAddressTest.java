@@ -12,7 +12,7 @@ public class IsIpAddressTest {
         Assert.assertEquals(true, IsIpAddress.isIpAddress("255.255.255.254"));
         Assert.assertEquals(true, IsIpAddress.isIpAddress("192.168.0.1"));
 
-        // for whole ipv4 range
+        // test for whole ipv4 range
         for (long n = Integer.MIN_VALUE; n <= Integer.MAX_VALUE; n++) {
             int i = (int) n;
             int b1 = (i >> 24) & 0xff;
