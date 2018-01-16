@@ -31,8 +31,4 @@ public class IsIpAddressTest {
     public void checkAllAdresses(){
         return;
     }
-
-
-
 }
-
