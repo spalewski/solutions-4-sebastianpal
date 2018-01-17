@@ -3,6 +3,7 @@ package pl.coderstrust.mySimpleLinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.List;
 
 abstract class  MySimpleLinkedListTestBase {
@@ -57,5 +58,24 @@ abstract class  MySimpleLinkedListTestBase {
         Assert.assertEquals(true, testList.contains(6));
         Assert.assertEquals(false, testList.contains(34345));
         Assert.assertEquals(true, testList.contains(20647936));
+    }
+
+    @Test
+    public void ShouldCheckiteratorMethods() {
+        testList.add(2);
+        testList.add(2);
+        Assert.assertEquals(2, testList.listIterator().next());
+        testList.add(3);
+        testList.add(4);
+        for (int i = 0; i <10000 ; i++) {
+            testList.add(i+2);}
+
+        Iterator itr = testList.listIterator();
+        while (itr.hasNext()) {
+            int x = (int) itr.next();
+            if (x <= 2)
+                itr.remove();
+        }
+        Assert.assertEquals(10001, testList.size());
     }
 }
