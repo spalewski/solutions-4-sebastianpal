@@ -72,7 +72,11 @@ abstract class MySimpleLinkedListTestBase {
         for (int i = 0; i < 10000; i++) {
             testList.add(i + 2);
         }
-        Assert.assertEquals(true, testList.iterator().hasNext());
-        Assert.assertEquals(10004, testList.size());
+            while (getList().iterator().hasNext()) {
+                int x = (int) getList().iterator().next();
+                if (x <= 2)
+                    getList().iterator().remove();
+            }
+            Assert.assertEquals(10004, testList.size());
+        }
     }
-}
