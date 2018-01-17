@@ -28,18 +28,6 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
         }
     }
 
-    private void linkFirst(T e) {
-        final Node<T> f = first;
-        final Node<T> newNode = new Node<>(null, e, f);
-        first = newNode;
-        if (f == null)
-            last = newNode;
-        else
-            f.prev = newNode;
-        size++;
-
-    }
-
     void linkLast(T e) {
         final Node<T> l = last;
         final Node<T> newNode = new Node<>(l, e, null);
@@ -49,46 +37,6 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
         else
             l.next = newNode;
         size++;
-    }
-
-    void linkBefore(T e, Node<T> succ) {
-        final Node<T> pred = succ.prev;
-        final Node<T> newNode = new Node<>(pred, e, succ);
-        succ.prev = newNode;
-        if (pred == null)
-            first = newNode;
-        else
-            pred.next = newNode;
-        size++;
-    }
-
-    private T unlinkFirst(Node<T> f) {
-        final T element = f.item;
-        final Node<T> next = f.next;
-        f.item = null;
-        f.next = null; // help GC
-        first = next;
-        if (next == null)
-            last = null;
-        else
-            next.prev = null;
-        size--;
-        return element;
-    }
-
-    private T unlinkLast(Node<T> l) {
-        final T element = l.item;
-        final Node<T> prev = l.prev;
-        l.item = null;
-        l.prev = null; // help GC
-        last = prev;
-        if (prev == null)
-            first = null;
-        else
-            prev.next = null;
-        size--;
-
-        return element;
     }
 
 
@@ -116,11 +64,10 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
     }
 
 
-
-
     public boolean contains(Object o) {
         return indexOf(o) != -1;
     }
+
     public int size() {
         return size;
     }
@@ -150,7 +97,6 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
     }
 
 
-
     public boolean addAll(Collection<? extends T> c) {
         return false;
     }
@@ -172,7 +118,6 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
         size = 0;
     }
 
-
     public T get(int index) {
         return node(index).item;
     }
@@ -181,20 +126,11 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
         return null;
     }
 
-
     public void add(int index, T element) {
     }
 
     public T remove(int index) {
         return unlink(node(index));
-    }
-
-    private boolean isElementIndex(int index) {
-        return index >= 0 && index < size;
-    }
-
-    private boolean isPositionIndex(int index) {
-        return index >= 0 && index <= size;
     }
 
 
@@ -249,75 +185,6 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
     }
 
 
-
-    public T peek() {
-        final Node<T> f = first;
-        return (f == null) ? null : f.item;
-    }
-
-    public T element() {
-        return getFirst();
-    }
-
-    public T poll() {
-        final Node<T> f = first;
-        return (f == null) ? null : unlinkFirst(f);
-    }
-
-    public T remove() {
-        return removeFirst();
-    }
-
-    public boolean offer(T e) {
-        return add(e);
-    }
-
-    public boolean offerFirst(T e) {
-        addFirst(e);
-        return true;
-    }
-
-    public boolean offerLast(T e) {
-        addLast(e);
-        return true;
-    }
-
-    public T peekFirst() {
-        final Node<T> f = first;
-        return (f == null) ? null : f.item;
-    }
-
-    public T peekLast() {
-        final Node<T> l = last;
-        return (l == null) ? null : l.item;
-    }
-
-    public T pollFirst() {
-        final Node<T> f = first;
-        return (f == null) ? null : unlinkFirst(f);
-    }
-
-    public T pollLast() {
-        final Node<T> l = last;
-        return (l == null) ? null : unlinkLast(l);
-    }
-
-    public void push(T e) {
-        addFirst(e);
-    }
-
-    public T pop() {
-        return removeFirst();
-    }
-
-    public boolean removeFirstOccurrence(Object o) {
-        return false;
-    }
-
-    public boolean removeLastOccurrence(Object o) {
-        return false;
-    }
-
     public ListIterator<T> listIterator(int index) {
         return null;
     }
@@ -326,6 +193,7 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
     }
+
     public Object[] toArray() {
         return null;
     }
@@ -339,60 +207,53 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
     public Spliterator<T> spliterator() {
         return null;
     }
+
     @Override
     public ListIterator<T> listIterator() {
         return null;
     }
+
     @Override
     public boolean containsAll(Collection<?> c) {
         return false;
     }
+
     @Override
     public boolean removeAll(Collection<?> c) {
         return false;
     }
+
     @Override
     public boolean retainAll(Collection<?> c) {
         return false;
     }
+
     @Override
-    public boolean isEmpty() {return false;}
+    public boolean isEmpty() {
+        return false;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new LinkedListIterator();
     }
-        private class LinkedListIterator implements Iterator<T>{
-            private Node<T> lastReturned;
-            private Node<T> next;
-            private Node current = first;
-            @Override
-            public boolean hasNext() {
-                return current != null;
-            }
-            @Override
-            public T next() {
-                if(hasNext()){
-                    T item = (T) current.item;
-                    current = current.next;
-                    return item;
-                }
-                return null;
-            }
-            public void remove() {
-                Node<T> lastNext = lastReturned.next;
-                unlink(lastReturned);
-                if (next == lastReturned)
-                    next = lastNext;
-                else
-                lastReturned = null;
-            }
+
+    private class LinkedListIterator implements Iterator<T> {
+        private Node current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
         }
 
-        public T getFirst() {
-        Node<T> f = first;
-        return f.item;
+        @Override
+        public T next() {
+            if (hasNext()) {
+                T item = (T) current.item;
+                current = current.next;
+                return item;
+            }
+            return null;
+        }
     }
-    public T removeFirst() {return null;}
-    public void addFirst(T e) {}
-    public void addLast(T e) {}
 }

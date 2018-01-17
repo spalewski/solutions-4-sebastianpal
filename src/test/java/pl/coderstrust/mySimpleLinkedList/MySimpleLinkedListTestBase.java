@@ -3,7 +3,6 @@ package pl.coderstrust.mySimpleLinkedList;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Iterator;
 import java.util.List;
 
 abstract class MySimpleLinkedListTestBase {
@@ -40,6 +39,7 @@ abstract class MySimpleLinkedListTestBase {
 
         Assert.assertEquals(10003, testList.size());
         Assert.assertEquals(true, testList.contains(6));
+        Assert.assertEquals(4, testList.get(2));
         testList.remove(0);
         Assert.assertEquals(9, testList.get(2));
 
@@ -69,14 +69,6 @@ abstract class MySimpleLinkedListTestBase {
         Assert.assertEquals(1, testList.iterator().next());
         Assert.assertEquals(true, testList.iterator().hasNext());
         testList.add(4);
-        for (int i = 0; i < 10000; i++) {
-            testList.add(i + 2);
-        }
-        while (getList().iterator().hasNext()) {
-            int x = (int) getList().iterator().next();
-            if (x <= 2)
-                getList().iterator().remove();
-        }
-        Assert.assertEquals(10004, testList.size());
+
     }
 }
