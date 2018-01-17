@@ -20,10 +20,13 @@ abstract class MySimpleLinkedListTestBase {
         testList.add(6);
         testList.add(8);
 
-        Assert.assertEquals(10003, testList.size());
-        Assert.assertEquals(true, testList.contains(6));
+        Assert.assertEquals(8, testList.get(10002));
+        Assert.assertEquals(1, testList.get(1));
         Assert.assertEquals(1, testList.get(1));
         Assert.assertEquals(20647936, testList.get(4544));
+        Assert.assertEquals(10003, testList.size());
+        Assert.assertEquals(true, testList.contains(6));
+        Assert.assertEquals(true, testList.contains(20647936));
 
     }
 
