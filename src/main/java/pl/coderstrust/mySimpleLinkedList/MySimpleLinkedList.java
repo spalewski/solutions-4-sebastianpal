@@ -362,8 +362,9 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
         return new LinkedListIterator();
     }
         private class LinkedListIterator implements Iterator<T>{
-
-            Node current = first;
+            private Node<T> lastReturned;
+            private Node<T> next;
+            private Node current = first;
             @Override
             public boolean hasNext() {
                 return current != null;
@@ -376,6 +377,14 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
                     return item;
                 }
                 return null;
+            }
+            public void remove() {
+                Node<T> lastNext = lastReturned.next;
+                unlink(lastReturned);
+                if (next == lastReturned)
+                    next = lastNext;
+                else
+                lastReturned = null;
             }
         }
 

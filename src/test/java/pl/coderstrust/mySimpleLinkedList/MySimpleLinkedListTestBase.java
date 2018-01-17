@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.List;
 
-abstract class  MySimpleLinkedListTestBase {
+abstract class MySimpleLinkedListTestBase {
     public abstract List getList();
 
     List testList = getList();
@@ -14,8 +14,8 @@ abstract class  MySimpleLinkedListTestBase {
     @Test
     public void add() {
 
-        for (int i = 0; i <10000 ; i++) {
-            testList.add(i*i);
+        for (int i = 0; i < 10000; i++) {
+            testList.add(i * i);
         }
         testList.add(5);
         testList.add(6);
@@ -27,11 +27,12 @@ abstract class  MySimpleLinkedListTestBase {
         Assert.assertEquals(20647936, testList.get(4544));
 
     }
+
     @Test
     public void remove() {
 
-        for (int i = 0; i <10000 ; i++) {
-            testList.add(i*i);
+        for (int i = 0; i < 10000; i++) {
+            testList.add(i * i);
         }
         testList.add(5);
         testList.add(6);
@@ -47,8 +48,8 @@ abstract class  MySimpleLinkedListTestBase {
 
     @Test
     public void contains() {
-        for (int i = 0; i <10000 ; i++) {
-            testList.add(i*i);
+        for (int i = 0; i < 10000; i++) {
+            testList.add(i * i);
         }
         testList.add(5);
         testList.add(6);
@@ -66,10 +67,12 @@ abstract class  MySimpleLinkedListTestBase {
         testList.add(2);
         testList.add(3);
         Assert.assertEquals(1, testList.iterator().next());
-        Assert.assertEquals(true,testList.iterator().hasNext());
+        Assert.assertEquals(true, testList.iterator().hasNext());
         testList.add(4);
-        for (int i = 0; i <10000 ; i++) {
-            testList.add(i+2);}
-        Assert.assertEquals(true,testList.iterator().hasNext());
+        for (int i = 0; i < 10000; i++) {
+            testList.add(i + 2);
         }
+        Assert.assertEquals(true, testList.iterator().hasNext());
+        Assert.assertEquals(10004, testList.size());
     }
+}
