@@ -62,20 +62,14 @@ abstract class  MySimpleLinkedListTestBase {
 
     @Test
     public void ShouldCheckiteratorMethods() {
+        testList.add(1);
         testList.add(2);
-        testList.add(2);
-        Assert.assertEquals(2, testList.listIterator().next());
         testList.add(3);
+        Assert.assertEquals(1, testList.iterator().next());
+        Assert.assertEquals(true,testList.iterator().hasNext());
         testList.add(4);
         for (int i = 0; i <10000 ; i++) {
             testList.add(i+2);}
-
-        Iterator itr = testList.listIterator();
-        while (itr.hasNext()) {
-            int x = (int) itr.next();
-            if (x <= 2)
-                itr.remove();
+        Assert.assertEquals(true,testList.iterator().hasNext());
         }
-        Assert.assertEquals(10001, testList.size());
     }
-}
