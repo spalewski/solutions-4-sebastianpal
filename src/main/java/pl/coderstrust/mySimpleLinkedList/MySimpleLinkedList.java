@@ -166,7 +166,7 @@ public class MySimpleLinkedList<T> implements List<T>, Iterable<T> {
         return -1;
     }
 
-    public int lastIndexOf(java.lang.Object o) {
+    public int lastIndexOf(Object o) {
         int index = size;
         if (o == null) {
             for (Node<T> x = last; x != null; x = x.prev) {
