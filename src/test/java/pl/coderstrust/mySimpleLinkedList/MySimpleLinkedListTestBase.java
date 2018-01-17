@@ -11,7 +11,7 @@ abstract class MySimpleLinkedListTestBase {
     List testList = getList();
 
     @Test
-    public void add() {
+    public void shouldCheckIsAddAdding() {
 
         for (int i = 0; i < 10000; i++) {
             testList.add(i * i);
@@ -28,7 +28,7 @@ abstract class MySimpleLinkedListTestBase {
     }
 
     @Test
-    public void remove() {
+    public void shouldCheckIsRemoveRemoving() {
 
         for (int i = 0; i < 10000; i++) {
             testList.add(i * i);
@@ -47,7 +47,7 @@ abstract class MySimpleLinkedListTestBase {
     }
 
     @Test
-    public void contains() {
+    public void shouldCheckIsContainsReturnsValidCheck() {
         for (int i = 0; i < 10000; i++) {
             testList.add(i * i);
         }
@@ -66,9 +66,9 @@ abstract class MySimpleLinkedListTestBase {
         testList.add(1);
         testList.add(2);
         testList.add(3);
+        testList.add(4);
         Assert.assertEquals(1, testList.iterator().next());
         Assert.assertEquals(true, testList.iterator().hasNext());
-        testList.add(4);
 
     }
 }
