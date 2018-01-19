@@ -7,29 +7,34 @@ public class Producer implements Runnable {
 
     private BlockingQueue<Message> queue;
 
-    public Producer(BlockingQueue<Message> q){
-        this.queue=q;
+    public Producer(BlockingQueue<Message> q) {
+        this.queue = q;
     }
+
     @Override
     public void run() {
-        //produce messages
-        for(int i=0; i<100; i++){
-            Message msg = new Message(""+i);
+        synchronized (queue) {
+            for (int i = 0; i < 100; i++) {
+                Message msg = new Message("element " + i);
+                try {
+                    if (queue.remainingCapacity() != 0) {
+                        queue.put(msg);
+                        Thread.sleep(1);
+                        System.out.println("Produced and placed " + msg.getMsg());
+                    }else {
+                        Thread.currentThread().wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            Message msg = new Message("exit");
             try {
-                Thread.sleep(i);
                 queue.put(msg);
-                System.out.println("Produced "+msg.getMsg());
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        //adding exit message
-        Message msg = new Message("exit");
-        try {
-            queue.put(msg);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
-
 }

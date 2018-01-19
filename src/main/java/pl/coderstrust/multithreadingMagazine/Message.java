@@ -1,14 +1,14 @@
 package pl.coderstrust.multithreadingMagazine;
 
 public class Message {
-        private String msg;
+    private String msg;
 
-        public Message(String str){
-            this.msg=str;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
+    public Message(String str) {
+        this.msg = str;
     }
+
+    public String getMsg() {
+        return msg;
+    }
+
+}
