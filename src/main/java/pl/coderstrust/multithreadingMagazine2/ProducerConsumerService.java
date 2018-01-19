@@ -11,6 +11,6 @@ public class ProducerConsumerService {
 
         new Thread(producer).start();
         new Thread(consumer).start();
-        System.out.println("Producer, Producer2, Producer3 and Consumer has been started");
+        System.out.println("Producer and Consumer has been started");
     }
 }
