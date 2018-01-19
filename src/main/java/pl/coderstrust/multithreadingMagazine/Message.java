@@ -10,5 +10,4 @@ public class Message {
     public String getMsg() {
         return msg;
     }
-
 }

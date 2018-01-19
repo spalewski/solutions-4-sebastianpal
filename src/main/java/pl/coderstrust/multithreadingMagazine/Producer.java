@@ -13,27 +13,17 @@ public class Producer implements Runnable {
 
     @Override
     public void run() {
-        synchronized (queue) {
+        synchronized (this) {
             for (int i = 0; i < 100; i++) {
                 Message msg = new Message("element " + i);
                 try {
-                    if (queue.remainingCapacity() != 0) {
                         queue.put(msg);
-                        Thread.sleep(1);
-                        System.out.println("Produced and placed " + msg.getMsg());
-                    }else {
-                        Thread.currentThread().wait();
-                    }
+                    System.out.println("Producer placed " + msg.getMsg());
+                    Thread.sleep(1);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-            Message msg = new Message("exit");
-            try {
-                queue.put(msg);
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

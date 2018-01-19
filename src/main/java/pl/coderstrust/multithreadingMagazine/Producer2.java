@@ -4,29 +4,27 @@ import java.util.concurrent.BlockingQueue;
 
 public class Producer2 implements Runnable {
 
-        private BlockingQueue<Message> queue;
+    private BlockingQueue<Message> queue;
 
-        public Producer2(BlockingQueue<Message> q){
-            this.queue=q;
-        }
-        @Override
-        public void run() {
-            for(int i=0; i<100; i++){
-                Message msg = new Message("element "+i + "from Producer2");
+    public Producer2(BlockingQueue<Message> q) {
+        this.queue = q;
+    }
+
+    @Override
+    public void run() {
+        synchronized (this) {
+            for (int i = 0; i < 200; i++) {
+                Message msg = new Message("element from producer 2 " + i);
                 try {
-                    while (queue.remainingCapacity()==10){
-                        wait();
-                        queue.put(msg);
-                        System.out.println("Produced "+msg.getMsg());}
+                    queue.put(msg);
+                    System.out.println("Producer nr 2 placed " + msg.getMsg());
+                    //Thread.sleep(1);
+
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-      /*      Message msg = new Message("exit");
-            try {
-                queue.put(msg);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         }
+    }
 }

@@ -12,21 +12,18 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-     // synchronized (this) {
-            try {
-                Message msg;
-                while ((msg = queue.take()).getMsg() != "exit" && queue.remainingCapacity() >= 0) {
-                    msg = queue.take();
-                    Thread.sleep(1);
-                    System.out.println("Taked and consumed element " + msg.getMsg());
-                }
-                    while (queue.remainingCapacity()==0)
-                    Thread.currentThread().wait();
 
-            } catch (InterruptedException e) {
+        try {
+            Message msg;
+            while (true) {
+                for (int i = 0; i < 100; i++) {
+                    msg = queue.take();
+                    System.out.println("Consumer takes and consumed " + msg.getMsg());
+                    Thread.sleep(1);
+                }
+            }
+        }catch(InterruptedException e){
                 e.printStackTrace();
             }
         }
     }
-//}
-
