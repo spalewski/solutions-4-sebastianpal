@@ -17,7 +17,7 @@ public class Producer implements Runnable {
             for (int i = 0; i < 100; i++) {
                 Message msg = new Message("element " + i);
                 try {
-                        queue.put(msg);
+                    queue.put(msg);
                     System.out.println("Producer placed " + msg.getMsg());
                     Thread.sleep(1);
 

@@ -2,22 +2,22 @@ package pl.coderstrust.multithreadingMagazine;
 
 import java.util.concurrent.BlockingQueue;
 
-public class Producer2 implements Runnable {
+public class Producer3 implements Runnable {
 
     private BlockingQueue<Message> queue;
 
-    public Producer2(BlockingQueue<Message> q) {
+    public Producer3(BlockingQueue<Message> q) {
         this.queue = q;
     }
 
     @Override
     public void run() {
         synchronized (this) {
-            for (int i = 0; i < 200; i++) {
-                Message msg = new Message("element from producer 2 " + i);
+            for (int i = 0; i < 300; i++) {
+                Message msg = new Message("element from producer 3 " + i);
                 try {
                     queue.put(msg);
-                    System.out.println("Producer nr 2 placed " + msg.getMsg());
+                    System.out.println("Producer nr 3 placed " + msg.getMsg());
                     Thread.sleep(1);
 
 
