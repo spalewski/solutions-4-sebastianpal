@@ -1,27 +1,35 @@
 package pl.coderstrust.multithreadingMagazine2;
 
 
-import java.util.concurrent.BlockingQueue;
+import java.util.LinkedList;
 
 public class Producer implements Runnable {
 
-    private BlockingQueue<Message> queue;
+    private LinkedList<Message> list;
 
-    public Producer(BlockingQueue<Message> q) {
-        this.queue = q;
+    public Producer(LinkedList<Message> q) {
+        this.list = q;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < 100; i++) {
-            Message msg = new Message("element " + i);
-            try {
-                queue.put(msg);
-                System.out.println("Producer placed " + msg.getMsg());
-                Thread.sleep(1);
+        synchronized (this) {
+            while (true) {
+                for (int i = 0; i < 100; i++) {
+                    if (list.size() <= 10) {
+                        Message msg = new Message("element " + i);
+                        list.add(msg);
+                        System.out.println("Producer placed " + msg.getMsg());
+                    } else {
+                        try {
+                            wait(1);
+                            this.notify();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                }
             }
         }
     }
