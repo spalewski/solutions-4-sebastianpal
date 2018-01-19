@@ -12,7 +12,6 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-
         try {
             Message msg;
             while (true) {
@@ -25,5 +24,6 @@ public class Consumer implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 }

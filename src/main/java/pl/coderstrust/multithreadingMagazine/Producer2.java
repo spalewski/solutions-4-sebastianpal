@@ -12,18 +12,17 @@ public class Producer2 implements Runnable {
 
     @Override
     public void run() {
-        synchronized (this) {
-            for (int i = 0; i < 200; i++) {
-                Message msg = new Message("element from producer 2 " + i);
-                try {
-                    queue.put(msg);
-                    System.out.println("Producer nr 2 placed " + msg.getMsg());
-                    Thread.sleep(1);
+
+        for (int i = 0; i < 100; i++) {
+            Message msg = new Message("element from producer 2 " + i);
+            try {
+                queue.put(msg);
+                System.out.println("Producer nr 2 placed " + msg.getMsg());
+                Thread.sleep(1);
 
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
