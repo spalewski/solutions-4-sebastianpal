@@ -16,7 +16,6 @@ public class Producer implements Runnable {
         while (true) {
             for (int i = 0; i < 100; i++) {
                 Message msg = new Message("element " + i);
-           //     synchronized (this) {
                     try {
                         while (list.size() == 10) {
                             wait();
@@ -24,8 +23,9 @@ public class Producer implements Runnable {
                         list.add(msg);
                         System.out.println("Producer placed " + msg.getMsg());
                         System.out.println("list size after adding " + list.size());
+                        Thread.sleep(100);
                        if (list.size()==10){
-                        notify();
+                       notify();
                         }
 
                     } catch (InterruptedException e) {
@@ -35,7 +35,6 @@ public class Producer implements Runnable {
             }
 
         }
-    //}
 }
 
 

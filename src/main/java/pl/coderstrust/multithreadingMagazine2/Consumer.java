@@ -15,9 +15,9 @@ public class Consumer implements Runnable {
     public void run() {
         while (true) {
             try {
-                synchronized (this) {
+
                     while (list.size() == 0) {
-                        list.wait();
+                        wait();
                     }
                     Iterator<Message> iterator = list.listIterator();
                     Message msg;
@@ -26,9 +26,11 @@ public class Consumer implements Runnable {
                     iterator.remove();
                     System.out.println("Consumer takes and consumed " + msg.getMsg());
                     System.out.println(list.size());
-                    if (list.size()==0){
-                    notify();
-                }}
+                    Thread.sleep(100);
+                    if (list.size() == 0) {
+                        this.notify();
+                    }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
