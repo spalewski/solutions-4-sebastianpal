@@ -15,25 +15,25 @@ public class Consumer implements Runnable {
     public void run() {
         while (true) {
             try {
-
+                synchronized (list) {
                     while (list.size() == 0) {
-                        wait();
-                    }
-                    Iterator<Message> iterator = list.listIterator();
-                    Message msg;
-                    while (!iterator.hasNext()) ;
-                    msg = iterator.next();
-                    iterator.remove();
-                    System.out.println("Consumer takes and consumed " + msg.getMsg());
-                    System.out.println(list.size());
-                    Thread.sleep(100);
-                    if (list.size() == 0) {
-                        this.notify();
-                    }
+                        list.wait();
+                        Iterator<Message> iterator = list.listIterator();
+                        Message msg;
+                        while (iterator.hasNext()) {
+                            msg = iterator.next();
+                            iterator.remove();
+                            System.out.println("Consumer takes and consumed " + msg.getMsg());
+                            System.out.println(list.size());
+                        }
+                        Thread.sleep(100);
+                        list.notifyAll();
 
-            } catch (InterruptedException e) {
+                    }
+                }
+                } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        }
     }
-}
