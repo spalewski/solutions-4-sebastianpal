@@ -16,7 +16,7 @@ public class Consumer implements Runnable {
             while (true) {
                 try {
                     while (list.size() == 0) {
-                        wait();
+                        wait(1);
                     }
                     synchronized (this){
                     Iterator<Message> iterator = list.listIterator();
@@ -26,7 +26,8 @@ public class Consumer implements Runnable {
                     iterator.remove();
                     System.out.println("Consumer takes and consumed " + msg.getMsg());
                     Thread.sleep(100);
-                    this.notify();}
+                    this.notifyAll();}
+                    System.out.println(list.size());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

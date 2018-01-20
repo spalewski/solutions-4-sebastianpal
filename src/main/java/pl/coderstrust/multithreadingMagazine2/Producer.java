@@ -22,8 +22,8 @@ public class Producer implements Runnable {
                             System.out.println("Producer placed " + msg.getMsg());
                         } else {
                             try {
-                                this.wait(30);
-                                this.notify();
+                                Thread.sleep(100);
+                                this.notifyAll();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
