@@ -13,24 +13,23 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        synchronized (this) {
             while (true) {
                 try {
                     while (list.size() == 0) {
                         wait();
                     }
+                    synchronized (this){
                     Iterator<Message> iterator = list.listIterator();
                     Message msg;
-
+                    while (!iterator.hasNext());
                     msg = iterator.next();
                     iterator.remove();
                     System.out.println("Consumer takes and consumed " + msg.getMsg());
-                    Thread.sleep(10);
-                    this.notify();
+                    Thread.sleep(100);
+                    this.notify();}
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
-}
