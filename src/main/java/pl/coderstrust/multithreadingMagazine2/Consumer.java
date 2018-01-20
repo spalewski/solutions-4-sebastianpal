@@ -1,34 +1,38 @@
 package pl.coderstrust.multithreadingMagazine2;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 public class Consumer implements Runnable {
 
-    private LinkedList<Message> list;
+    private ArrayList<Message> list;
 
-    public Consumer(LinkedList<Message> q) {
+    public Consumer(ArrayList<Message> q) {
         this.list = q;
     }
 
     @Override
     public void run() {
-        synchronized (this) {
-            while (true) {
-                try {
+        while (true) {
+            try {
+
                     while (list.size() == 0) {
                         wait();
                     }
                     Iterator<Message> iterator = list.listIterator();
                     Message msg;
+                    while (!iterator.hasNext()) ;
                     msg = iterator.next();
                     iterator.remove();
                     System.out.println("Consumer takes and consumed " + msg.getMsg());
-                    Thread.sleep(10);
-                    notify();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    System.out.println(list.size());
+                    Thread.sleep(100);
+                    if (list.size() == 0) {
+                        this.notify();
+                    }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
