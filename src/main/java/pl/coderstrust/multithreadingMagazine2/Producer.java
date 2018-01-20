@@ -22,7 +22,7 @@ public class Producer implements Runnable {
                         System.out.println("Producer placed " + msg.getMsg());
                     } else {
                         try {
-                            wait(1);
+                            this.wait(20);
                             this.notify();
                         } catch (InterruptedException e) {
                             e.printStackTrace();

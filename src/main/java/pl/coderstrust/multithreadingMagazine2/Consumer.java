@@ -21,11 +21,12 @@ public class Consumer implements Runnable {
                     }
                     Iterator<Message> iterator = list.listIterator();
                     Message msg;
+
                     msg = iterator.next();
                     iterator.remove();
                     System.out.println("Consumer takes and consumed " + msg.getMsg());
                     Thread.sleep(10);
-                    notify();
+                    this.notify();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
