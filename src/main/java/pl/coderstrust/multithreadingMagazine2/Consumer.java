@@ -31,9 +31,9 @@ public class Consumer implements Runnable {
 
                     }
                 }
-                } catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        }
     }
+}
