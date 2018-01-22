@@ -17,6 +17,7 @@ public class Consumer implements Runnable {
             try {
                 synchronized (list) {
                     while (list.size() == 0) {
+                        System.out.println("WAITING!!!!!!!!!!!");
                         list.wait();
                         Iterator<Message> iterator = list.listIterator();
                         Message msg;
@@ -28,12 +29,13 @@ public class Consumer implements Runnable {
                         }
                         Thread.sleep(100);
                         list.notifyAll();
-
                     }
+                    list.wait();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 }

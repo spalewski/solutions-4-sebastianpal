@@ -25,13 +25,14 @@ public class Producer implements Runnable {
                         System.out.println("Producer placed " + msg.getMsg());
                         System.out.println("list size after adding " + list.size());
                         Thread.sleep(10);
-                        list.notifyAll();
+                        if(list.size()==10){
+                            list.notifyAll();
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         }
-
     }
 }
