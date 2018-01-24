@@ -39,22 +39,31 @@ public class Tree {
             return root == null;
         }
 
-        public void insert(int data) {
-            root = insert(root, data);
-        }
-
-        private Node insert(Node node, int data) {
-            if (node == null)
-                node = new Node(data);
-            else {
-                if (node.getRight() == null)
-                    node.right = insert(node.right, data);
-                else
-                    node.left = insert(node.left, data);
+        public void insert(int element) {
+            Node newNode = new Node(element);
+            if (root == null) {
+                root = newNode;
+                return;
             }
-            return node;
+            Node current = root;
+            Node parent = null;
+            while (true) {
+                parent = current;
+                if (element < current.data) {
+                    current = current.left;
+                    if (current == null) {
+                        parent.left = newNode;
+                        return;
+                    }
+                } else {
+                    current = current.right;
+                    if (current == null) {
+                        parent.right = newNode;
+                        return;
+                    }
+                }
+            }
         }
-
 
         public int countNodes() {
             return countNodes(root);
@@ -162,7 +171,7 @@ public class Tree {
         }
 
         public int[] inorder() {
-            array = new int[ countNodes() ];
+            array = new int[countNodes()];
             inorder(root);
             index = 0;
 
@@ -173,27 +182,27 @@ public class Tree {
         private void inorder(Node r) {
             if (r != null) {
                 inorder(r.getLeft());
-                array[ index++ ] = r.getData();
+                array[index++] = r.getData();
                 inorder(r.getRight());
             }
         }
 
         public int[] preorder() {
-            array = new int[ countNodes() ];
+            array = new int[countNodes()];
             preorder(root);
             return array;
         }
 
         private void preorder(Node r) {
             if (r != null) {
-                array[ index++ ] = r.getData();
+                array[index++] = r.getData();
                 preorder(r.getLeft());
                 preorder(r.getRight());
             }
         }
 
         public int[] postorder() {
-            array = new int[ countNodes() ];
+            array = new int[countNodes()];
             postorder(root);
             return array;
         }
@@ -202,7 +211,7 @@ public class Tree {
             if (r != null) {
                 postorder(r.getLeft());
                 postorder(r.getRight());
-                array[ index++ ] = r.getData();
+                array[index++] = r.getData();
 
             }
         }
