@@ -3,27 +3,14 @@ package pl.coderstrust.Tree;
 public class Tree {
 
     static class Node {
-        Node left, right;
+        Node left;
+        Node right;
         int data;
-
-        public Node() {
-            left = null;
-            right = null;
-            data = 0;
-        }
 
         public Node(int n) {
             left = null;
             right = null;
             data = n;
-        }
-
-        public void setLeft(Node n) {
-            left = n;
-        }
-
-        public void setRight(Node n) {
-            right = n;
         }
 
         public Node getLeft() {
@@ -34,10 +21,6 @@ public class Tree {
             return right;
         }
 
-        public void set(int d) {
-            data = d;
-        }
-
         public int getData() {
             return data;
         }
@@ -45,6 +28,8 @@ public class Tree {
 
     public static class BinaryTree {
         private Node root;
+        private int[] array;
+        private int index = 0;
 
         public BinaryTree() {
             root = null;
@@ -103,61 +88,123 @@ public class Tree {
             return false;
         }
 
+        public boolean remove(int element) {
+            Node parent = root;
+            Node current = root;
+            boolean isLeftChild = false;
+            while (current.data != element) {
+                parent = current;
+                if (current.data > element) {
+                    isLeftChild = true;
+                    current = current.left;
+                } else {
+                    isLeftChild = false;
+                    current = current.right;
+                }
+                if (current == null) {
+                    return false;
+                }
+            }
+            if (current.left == null && current.right == null) {
+                if (current == root) {
+                    root = null;
+                }
+                if (isLeftChild == true) {
+                    parent.left = null;
+                } else {
+                    parent.right = null;
+                }
+            } else if (current.right == null) {
+                if (current == root) {
+                    root = current.left;
+                } else if (isLeftChild) {
+                    parent.left = current.left;
+                } else {
+                    parent.right = current.left;
+                }
+            } else if (current.left == null) {
+                if (current == root) {
+                    root = current.right;
+                } else if (isLeftChild) {
+                    parent.left = current.right;
+                } else {
+                    parent.right = current.right;
+                }
+            } else if (current.left != null && current.right != null) {
 
-        public void inorder() {
+                Node successor = getSuccessor(current);
+                if (current == root) {
+                    root = successor;
+                } else if (isLeftChild) {
+                    parent.left = successor;
+                } else {
+                    parent.right = successor;
+                }
+                successor.left = current.left;
+            }
+            return true;
+        }
+
+        private Node getSuccessor(Node removeNode) {
+            Node successsor = null;
+            Node successsorParent = null;
+            Node current = removeNode.right;
+            while (current != null) {
+                successsorParent = successsor;
+                successsor = current;
+                current = current.left;
+            }
+            if (successsor != removeNode.right) {
+                successsorParent.left = successsor.right;
+                successsor.right = removeNode.right;
+            }
+            return successsor;
+        }
+
+        public int[] inorder() {
+            array = new int[ countNodes() ];
             inorder(root);
+            index = 0;
+
+            return array;
+
         }
 
         private void inorder(Node r) {
-            int[] array = new int[countNodes()];
             if (r != null) {
                 inorder(r.getLeft());
-                System.out.print(r.getData() + " ");
-
+                array[ index++ ] = r.getData();
                 inorder(r.getRight());
             }
         }
 
-        public void preorder() {
+        public int[] preorder() {
+            array = new int[ countNodes() ];
             preorder(root);
+            return array;
         }
 
         private void preorder(Node r) {
             if (r != null) {
-                System.out.print(r.getData() + " ");
+                array[ index++ ] = r.getData();
                 preorder(r.getLeft());
                 preorder(r.getRight());
             }
         }
 
-        public void postorder() {
+        public int[] postorder() {
+            array = new int[ countNodes() ];
             postorder(root);
+            return array;
         }
 
         private void postorder(Node r) {
             if (r != null) {
                 postorder(r.getLeft());
                 postorder(r.getRight());
-                System.out.print(r.getData() + " ");
+                array[ index++ ] = r.getData();
+
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-        BinaryTree binaryTree = new BinaryTree();
-
-        binaryTree.insert(5);
-        binaryTree.insert(6);
-        binaryTree.insert(22);
-        binaryTree.insert(4);
-
-        System.out.print("\nPost order : ");
-        binaryTree.postorder();
-        System.out.print("\nPre order : ");
-        binaryTree.preorder();
-        System.out.print("\nIn order : ");
-        binaryTree.inorder();
-
     }
 }
